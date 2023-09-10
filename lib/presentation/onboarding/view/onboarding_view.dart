@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart'hide BoxDecoration, BoxShadow;
+import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jobsque/domain/model/models.dart';
-import 'package:jobsque/presentation/onboarding/viewmodel/onboarding_viewmodel.dart';
 import 'package:jobsque/resources/assets_manager.dart';
 import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/constant_manager.dart';
@@ -10,6 +10,9 @@ import 'package:jobsque/resources/font_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/style_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
+
+import '../cubit/onboarding_cubit.dart';
+import '../cubit/onboarding_state.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});
@@ -20,20 +23,19 @@ class OnboardingView extends StatefulWidget {
 
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
-  final OnBoardViewModel _viewModel = OnBoardViewModel();
+  // final OnBoardViewModel _viewModel = OnBoardViewModel();
 
   @override
   void initState() {
-    _viewModel.start();
+    // _viewModel.start();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<SliderViewObject>(
-      stream: _viewModel.outputSliderViewObject,
-      builder: (context, snapshot) {
-        return _getContentWidget(snapshot.data);
+    return BlocBuilder<OnBoardingCubit, OnBoardingState>(
+      builder: (context, state) {
+        return _getContentWidget(BlocProvider.of<OnBoardingCubit>(context).currentPage());
       },
     );
   }
@@ -61,7 +63,8 @@ class _OnboardingViewState extends State<OnboardingView> {
           controller: _pageController,
           itemCount: sliderViewObject.numOfSlides,
           onPageChanged: (index) {
-            _viewModel.onPageChanged(index);
+            print(index);
+            BlocProvider.of<OnBoardingCubit>(context).getCurrentIndex(index);
           },
           itemBuilder: (context, index) {
             return OnBoardingPage(sliderViewObject.sliderObject, index);
@@ -92,7 +95,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           ),
           ElevatedButton(
               onPressed: () {
-                _pageController.animateToPage(_viewModel.goNext(),
+                _pageController.animateToPage(BlocProvider.of<OnBoardingCubit>(context).onScrollNext(),
                     duration: const Duration(
                         microseconds: AppConstants.sliderAnimationTime),
                     curve: Curves.linear);
@@ -123,7 +126,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   void dispose() {
-    _viewModel.dispose();
+    // _viewModel.dispose();
     super.dispose();
   }
 }
@@ -151,7 +154,7 @@ class OnBoardingPage extends StatelessWidget {
                       )
                     : Image.asset(_sliderObject.image)),
             Container(
-              decoration:const BoxDecoration(boxShadow: [
+              decoration: const BoxDecoration(boxShadow: [
                 BoxShadow(
                   blurRadius: 5,
                   color: Colors.white,

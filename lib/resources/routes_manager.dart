@@ -4,7 +4,7 @@ import 'package:jobsque/presentation/forget_password/forgot_password_view.dart';
 import 'package:jobsque/presentation/login/login_view.dart';
 import 'package:jobsque/presentation/main/main_view.dart';
 import 'package:jobsque/presentation/onboarding/view/onboarding_view.dart';
-import 'package:jobsque/presentation/spashcreen/splash_view.dart';
+import 'package:jobsque/presentation/spashcreen/view/splash_view.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 
 class Routes {
