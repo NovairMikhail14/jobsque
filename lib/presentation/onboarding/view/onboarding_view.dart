@@ -10,7 +10,6 @@ import 'package:jobsque/resources/font_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/style_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
-
 import '../../login/login_view.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../cubit/onboarding_state.dart';
