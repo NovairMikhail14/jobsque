@@ -5,7 +5,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:jobsque/resources/theme_manager.dart';
 
 import '../presentation/onboarding/cubit/onboarding_cubit.dart';
-import '../resources/routes_manager.dart';
+import '../presentation/profile/profile_view.dart';
 
 class MyApp extends StatelessWidget {
   MyApp._internal();
@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: getApplicationTheme(),
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.splashRoute,
-        // home: LoginView(),
+        // onGenerateRoute: RouteGenerator.getRoute,
+        // initialRoute: Routes.splashRoute,
+        home: ProfileView(),
       ),
     );
   }

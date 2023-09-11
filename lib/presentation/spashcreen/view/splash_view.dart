@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:jobsque/resources/assets_manager.dart';
 import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/constant_manager.dart';
@@ -21,10 +20,8 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     Future.delayed(
       const Duration(seconds: AppConstants.splashDelay),
-      () => Get.to( ()=> OnboardingView() )
-        // Navigator.push(
-            // context, MaterialPageRoute(builder: (context) => OnboardingView()));
-      ,
+      () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => OnboardingView()))
     );
     super.initState();
   }

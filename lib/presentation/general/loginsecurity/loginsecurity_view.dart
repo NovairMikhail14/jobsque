@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/presentation/account_access/change_password/changepassword_view.dart';
+import 'package:jobsque/presentation/account_access/phone_no/phoneno_view.dart';
+import 'package:jobsque/presentation/account_access/step_validation/2stepvalidation_1_view.dart';
 import 'package:jobsque/presentation/widgets/main_listtile.dart';
-import 'package:jobsque/presentation/widgets/language_radioswitch.dart';
-import 'package:jobsque/presentation/widgets/main_switchtile.dart';
-import 'package:jobsque/presentation/widgets/main_titleblock.dart';
+
 import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
+
+import '../../account_access/email_address/emailadress_view.dart';
 
 class LoginSecurityView extends StatefulWidget {
   const LoginSecurityView({Key? key}) : super(key: key);
@@ -35,11 +38,36 @@ class _LoginSecurityViewState extends State<LoginSecurityView> {
                 ),
                 Column(
                   children: [
-                    MainListTile(title:  AppStrings.lsAccAccEmail,trailingText: "#Email",),
-                    MainListTile(title:  AppStrings.lsAccAccPhone,),
-                    MainListTile(title:  AppStrings.lsAccAccPassword,),
-                    MainListTile(title:  AppStrings.lsAccAccVerification,trailingText: "#Non active",),
-                    MainListTile(title:  AppStrings.lsAccAccFaceID,),                  ],
+                    MainListTile(onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => EmailAddressView(),
+                          ));
+                    },title:  AppStrings.lsAccAccEmail,trailingText: "#Email",),
+                    MainListTile(onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PhoneNoView(),
+                          ));
+                    },title:  AppStrings.lsAccAccPhone,),
+                    MainListTile(onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChangePasswordView(),
+                          ));
+                    },title:  AppStrings.lsAccAccPassword,),
+                    MainListTile(onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TwoStepValidationView(),
+                          ));
+                    },title:  AppStrings.lsAccAccVerification,trailingText: "#Non active",),
+                    MainListTile(onTap: () {
+                    },title:  AppStrings.lsAccAccFaceID,),                  ],
                 ),
               ],
             )

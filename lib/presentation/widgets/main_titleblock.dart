@@ -10,7 +10,7 @@ class MainTitleBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Container(
           margin: EdgeInsets.symmetric(vertical: AppMargin.m8),
@@ -25,9 +25,12 @@ class MainTitleBlock extends StatelessWidget {
               SizedBox(
                 height: AppSize.s4,
               ),
-              Text(
-                subtitle,
-                style: Theme.of(context).textTheme.bodyLarge,textAlign: textAlign,
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.9,
+                child: Text(
+                  subtitle,
+                  style: Theme.of(context).textTheme.bodyLarge,textAlign: textAlign,
+                ),
               ),
             ],
           ),

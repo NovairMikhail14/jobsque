@@ -7,10 +7,11 @@ class MainListTile extends StatefulWidget {
   String trailingText;
   IconData iconData;
   bool leadingIcon;
+  Function onTap;
 
 
   MainListTile(
-      {required this.title, this.trailingText="",this.leadingIcon = false, this.iconData = Icons.abc});
+      {required this.title, this.trailingText="",required this.onTap,this.leadingIcon = false, this.iconData = Icons.abc});
 
   @override
   State<MainListTile> createState() => _MainListTileState();
@@ -20,10 +21,12 @@ class _MainListTileState extends State<MainListTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: (){},
       child: Column(
         children: [
           ListTile(
+            onTap: () {
+              widget.onTap();
+            },
             title: Text(widget.title ),
             leading: widget.leadingIcon?  CircleAvatar(
               radius: AppSize.s20,

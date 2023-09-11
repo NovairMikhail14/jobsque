@@ -7,6 +7,9 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../create_account/create_account_view.dart';
+import '../reset_password/reset_password_view.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
 
@@ -31,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               MainTitleBlock(
-                  title: AppStrings.loginTitle, subtitle: AppStrings.loginBody),
+                  title: AppStrings.loginTitle, subtitle: AppStrings.loginBody,),
               SizedBox(
                 height: AppSize.s16,
               ),
@@ -65,7 +68,9 @@ class _LoginViewState extends State<LoginView> {
                             .textTheme
                             .titleMedium!
                             .apply(color: ColorManager.primary500)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordView(),));
+                    },
                   ),
                 ],
               ),
@@ -86,7 +91,9 @@ class _LoginViewState extends State<LoginView> {
                             .textTheme
                             .titleMedium!
                             .apply(color: ColorManager.primary500)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountView(),));
+                    },
                   ),
                 ],
               ),

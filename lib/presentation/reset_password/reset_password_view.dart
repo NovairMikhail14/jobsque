@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobsque/presentation/login/login_view.dart';
 import 'package:jobsque/presentation/widgets/main_button.dart';
 import 'package:jobsque/presentation/widgets/main_textfield.dart';
 import 'package:jobsque/presentation/widgets/main_titleblock.dart';
@@ -57,7 +58,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                             .textTheme
                             .titleMedium!
                             .apply(color: ColorManager.primary500)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginView(),));
+                    },
                   ),
                 ],
               ),

@@ -7,6 +7,8 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../login/login_view.dart';
+
 
 class CreateAccountView extends StatefulWidget {
   const CreateAccountView({Key? key}) : super(key: key);
@@ -73,7 +75,7 @@ class _CreateAccountViewState extends State<CreateAccountView> {
                             .textTheme
                             .titleMedium!
                             .apply(color: ColorManager.primary500)),
-                    onPressed: () {},
+                    onPressed: () { Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginView(),));},
                   ),
                 ],
               ),

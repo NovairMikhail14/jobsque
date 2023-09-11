@@ -32,39 +32,61 @@ class OnBoardingCubit extends Cubit<OnBoardingState>{
   ];
 
   int  currentIndex = 0;
-  initialPage(){
-    emit(initialPage());
-    return SliderViewObject(onBoardingList[currentIndex],onBoardingList.length,currentIndex);
-  }
+  // initialPage(){
+  //   emit(initialPage());
+  //   return SliderViewObject(onBoardingList[currentIndex],onBoardingList.length,currentIndex);
+  // }
 
   currentPage(){
-    print(currentIndex);
+    print("currentPage $currentIndex");
     emit(CurrentPage());
     return SliderViewObject(onBoardingList[currentIndex],onBoardingList.length,currentIndex);
-
   }
 
   getCurrentIndex(index){
-    currentIndex = index;
-    print("Cubit $index");
-  }
-  onScrollNext(){
-    if(currentIndex < onBoardingList.length){
-      emit(NextPage());
-      return currentIndex++;
-    }
-    else  {
-    }
-  }
-  onScrollPrevious(){
-    if(currentIndex > 0){
-      currentIndex--;
-      emit(PreviousPage());
-    }
-    else  {
+print(" Need index $index");
+    if(index < onBoardingList.length){
+      print("Index ${currentIndex}");
+      currentIndex = index;
+      currentPage();
 
     }
+    else if(index > onBoardingList.length-1) {
+      currentIndex = 0;
+      currentPage();
+
+    }else if(index < 0){
+      currentIndex = onBoardingList.length-1;
+      currentPage();
+
+    }
+    print(" index1 $index");
+
   }
+  onScrollNext(){
+    if(currentIndex < onBoardingList.length-1){
+      currentIndex+=1;
+      currentPage();
+      print("currentIndex ${currentIndex}");
+      return currentIndex;
+    }
+    else if(currentIndex > onBoardingList.length-1) {
+      currentIndex = 0;
+      print(" currentIndex1 ${currentIndex}");
+      currentPage();
+      return currentIndex;
+    }else{
+    }
+  }
+  // onScrollPrevious(){
+  //   if(currentIndex > 0){
+  //     currentIndex--;
+  //     emit(PreviousPage());
+  //   }
+  //   else if(currentIndex == -1){
+  //     currentIndex = onBoardingList.length;
+  //   }
+  // }
   onPressSkip(){
     emit(SkipToHomePage());
   }
