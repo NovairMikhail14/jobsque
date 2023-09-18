@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/presentation/create_account/create_account_view.dart';
 import 'package:jobsque/presentation/forget_password/forgot_password_view.dart';
-import 'package:jobsque/presentation/login/login_view.dart';
+import 'package:jobsque/presentation/login/view/login_view.dart';
 import 'package:jobsque/presentation/main/main_view.dart';
 import 'package:jobsque/presentation/onboarding/view/onboarding_view.dart';
 import 'package:jobsque/presentation/spashcreen/view/splash_view.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 
+import '../app/di.dart';
 import '../presentation/account_access/change_password/changepassword_view.dart';
 import '../presentation/account_access/email_address/emailadress_view.dart';
 import '../presentation/account_access/phone_no/phoneno_view.dart';
@@ -133,8 +134,9 @@ class RouteGenerator {
     builder: (context) => const OnboardingView(),
     );
     case Routes.loginRoute:
+      initLoginModule();
     return MaterialPageRoute(
-    builder: (context) => const LoginView(),
+    builder: (context) => LoginView(),
     );
     case Routes.createAccountRoute:
     return MaterialPageRoute(

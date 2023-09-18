@@ -1,7 +1,7 @@
 import 'package:jobsque/data/network/app_api.dart';
 import 'package:jobsque/data/network/requests.dart';
 
-import '../responses/responses.dart';
+import '../responses/auth_response/responses.dart';
 
 abstract class RemoteDataSource{
   Future<AuthenticationResponse> login(LoginRequest loginRequest);

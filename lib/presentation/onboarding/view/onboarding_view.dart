@@ -10,7 +10,8 @@ import 'package:jobsque/resources/font_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/style_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
-import '../../login/login_view.dart';
+import '../../../resources/routes_manager.dart';
+import '../../login/view/login_view.dart';
 import '../cubit/onboarding_cubit.dart';
 import '../cubit/onboarding_state.dart';
 
@@ -96,7 +97,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           ElevatedButton(
               onPressed: () {
                 if(sliderViewObject.currentIndex ==  sliderViewObject.numOfSlides-1){
-                  Navigator.pushReplacement(context,  MaterialPageRoute(builder: (context) => LoginView()));
+                  Navigator.pushReplacementNamed(context,Routes.loginRoute);
                 }else {
                   _pageController.animateToPage(
                       BlocProvider.of<OnBoardingCubit>(context).onScrollNext(),

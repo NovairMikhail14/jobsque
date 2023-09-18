@@ -31,6 +31,25 @@ Map<String, dynamic> _$UserResponseToJson(UserResponse instance) =>
       'updated_at': instance.updatedAt,
     };
 
+ProfileResponse _$ProfileResponseFromJson(Map<String, dynamic> json) =>
+    ProfileResponse()
+      ..id = json['id'] as int?
+      ..name = json['name'] as String?
+      ..email = json['email'] as String?
+      ..otp = json['otp'] as String?
+      ..createdAt = json['created_at'] as String?
+      ..updatedAt = json['updated_at'] as String?;
+
+Map<String, dynamic> _$ProfileResponseToJson(ProfileResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'email': instance.email,
+      'otp': instance.otp,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+    };
+
 AuthenticationResponse _$AuthenticationResponseFromJson(
         Map<String, dynamic> json) =>
     AuthenticationResponse(

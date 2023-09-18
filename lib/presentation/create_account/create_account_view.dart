@@ -7,7 +7,7 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
-import '../login/login_view.dart';
+import '../login/view/login_view.dart';
 
 
 class CreateAccountView extends StatefulWidget {

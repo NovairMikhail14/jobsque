@@ -2,7 +2,7 @@ import 'package:jobsque/app/constants.dart';
 import 'package:jobsque/app/extensions.dart';
 import 'package:jobsque/domain/model/models.dart';
 
-import '../responses/responses.dart';
+import '../responses/auth_response/responses.dart';
 
 extension UserResponseMapper on UserResponse? {
   User toDomain() {

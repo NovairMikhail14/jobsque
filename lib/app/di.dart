@@ -11,6 +11,7 @@ import '../data/network/dio_factory.dart';
 import '../data/repository/repository_impl.dart';
 import '../domain/repository/repository.dart';
 import '../domain/usecase/login_usecase.dart';
+import '../presentation/login/cubit/login_cubit.dart';
 
 final instance = GetIt.instance;
 
@@ -27,7 +28,8 @@ Future<void> initAppModule() async{
 }
 
 initLoginModule(){
-  if(!GetIt.I.isRegistered<LoginUsecase>()) {
-    instance.registerFactory<LoginUsecase>(() => LoginUsecase(instance()));
+  if(!GetIt.I.isRegistered<LoginUseCase>()) {
+    instance.registerFactory<LoginUseCase>(() => LoginUseCase(instance()));
+    instance.registerFactory<LoginCubit>(() => LoginCubit(instance()));
   }
 }

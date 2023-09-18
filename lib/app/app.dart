@@ -1,11 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:jobsque/app/di.dart';
+import 'package:jobsque/presentation/login/cubit/login_cubit.dart';
 import 'package:jobsque/resources/theme_manager.dart';
 
 import '../presentation/onboarding/cubit/onboarding_cubit.dart';
-import '../presentation/profile/profile_view.dart';
+import '../resources/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
   MyApp._internal();
@@ -15,17 +16,19 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => OnBoardingCubit(),)
+        BlocProvider(create: (context) => OnBoardingCubit(),),
+        BlocProvider(create: (context) => instance<LoginCubit>())
       ],
-      child: GetMaterialApp(
+      child: MaterialApp(
         title: 'Flutter Demo',
         theme: getApplicationTheme(),
         debugShowCheckedModeBanner: false,
-        // onGenerateRoute: RouteGenerator.getRoute,
-        // initialRoute: Routes.splashRoute,
-        home: ProfileView(),
+        onGenerateRoute: RouteGenerator.getRoute,
+        initialRoute: Routes.splashRoute,
+        // home: ProfileView(),
       ),
     );
   }

@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:jobsque/app/constants.dart';
 import 'package:retrofit/http.dart';
 
-import '../responses/responses.dart';
+import '../responses/auth_response/responses.dart';
 part 'app_api.g.dart';
 
 @RestApi(baseUrl: Constants.baseURL)
