@@ -1,12 +1,15 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/presentation/onboarding/cubit/onboarding_state.dart';
 
+import '../../../app/app_pref.dart';
+import '../../../app/di.dart';
 import '../../../domain/model/models.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 
-class OnBoardingCubit extends Cubit<OnBoardingState>{
-  OnBoardingCubit():super(InitialOnBoarding());
+class OnBoardingCubit extends Cubit<OnBoardingState> {
+  OnBoardingCubit() : super(InitialOnBoarding());
+  final AppPreferences _shearedPref = instance<AppPreferences>();
   List<SliderObject> onBoardingList = [
     SliderObject(
         ImageAssets.onBoardingLogo1,
@@ -31,53 +34,47 @@ class OnBoardingCubit extends Cubit<OnBoardingState>{
         AppStrings.btnGetStarted),
   ];
 
-  int  currentIndex = 0;
+  int currentIndex = 0;
+
   // initialPage(){
   //   emit(initialPage());
   //   return SliderViewObject(onBoardingList[currentIndex],onBoardingList.length,currentIndex);
   // }
 
-  currentPage(){
+  currentPage() {
     print("currentPage $currentIndex");
     emit(CurrentPage());
-    return SliderViewObject(onBoardingList[currentIndex],onBoardingList.length,currentIndex);
+    return SliderViewObject(
+        onBoardingList[currentIndex], onBoardingList.length, currentIndex);
   }
 
-  getCurrentIndex(index){
-print(" Need index $index");
-    if(index < onBoardingList.length){
-      print("Index ${currentIndex}");
+  getCurrentIndex(index) {
+    if (index < onBoardingList.length) {
       currentIndex = index;
       currentPage();
-
-    }
-    else if(index > onBoardingList.length-1) {
+    } else if (index > onBoardingList.length - 1) {
+      _shearedPref.setAppOnBoardingViewed();
       currentIndex = 0;
       currentPage();
-
-    }else if(index < 0){
-      currentIndex = onBoardingList.length-1;
+    } else if (index < 0) {
+      currentIndex = onBoardingList.length - 1;
       currentPage();
-
     }
-    print(" index1 $index");
-
   }
-  onScrollNext(){
-    if(currentIndex < onBoardingList.length-1){
-      currentIndex+=1;
+
+  onScrollNext() {
+    if (currentIndex < onBoardingList.length - 1) {
+      currentIndex += 1;
       currentPage();
-      print("currentIndex ${currentIndex}");
       return currentIndex;
-    }
-    else if(currentIndex > onBoardingList.length-1) {
+    } else if (currentIndex > onBoardingList.length - 1) {
+      _shearedPref.setAppOnBoardingViewed();
       currentIndex = 0;
-      print(" currentIndex1 ${currentIndex}");
       currentPage();
       return currentIndex;
-    }else{
-    }
+    } else {}
   }
+
   // onScrollPrevious(){
   //   if(currentIndex > 0){
   //     currentIndex--;
@@ -87,8 +84,7 @@ print(" Need index $index");
   //     currentIndex = onBoardingList.length;
   //   }
   // }
-  onPressSkip(){
+  onPressSkip() {
     emit(SkipToHomePage());
   }
-
-  }
+}

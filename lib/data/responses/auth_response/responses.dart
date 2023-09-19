@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'responses.g.dart';
 
+
+//flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
 class BaseResponse{
   @JsonKey(name: "status")
@@ -51,6 +53,16 @@ class AuthenticationResponse extends BaseResponse {
 
   factory AuthenticationResponse.fromJson(Map<String,dynamic> json) => _$AuthenticationResponseFromJson(json);
   Map<String,dynamic> toJson() => _$AuthenticationResponseToJson(this);
+}
+
+
+@JsonSerializable()
+class ForgetPasswordResponse extends BaseResponse {
+  @JsonKey(name: "user")
+  String? user;
+  ForgetPasswordResponse(this.user);
+  factory ForgetPasswordResponse.fromJson(Map<String,dynamic> json) => _$ForgetPasswordResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ForgetPasswordResponseToJson(this);
 }
 
 // @JsonSerializable()

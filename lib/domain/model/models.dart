@@ -31,3 +31,8 @@ class Authentication {
   String token;
   Authentication(this.user, this.token);
 }
+
+class ForgetPassword {
+  String? user;
+  ForgetPassword(this.user);
+}

@@ -11,7 +11,7 @@ const String AUTHORIZATION = "authorization";
 const String DEFULT_LANGUAGE = "language";
 
 class DioFactory {
-  final AppPreferances _appPreferances;
+  final AppPreferences _appPreferances;
   DioFactory(this._appPreferances);
 
   Future<Dio> getDio() async {

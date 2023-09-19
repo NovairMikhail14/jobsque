@@ -4,4 +4,5 @@ import 'package:jobsque/domain/model/models.dart';
 import '../../data/network/failure.dart';
 abstract class Repository{
    Future<Either <Failure,Authentication>> login(LoginRequest loginRequest );
+   Future<Either <Failure,ForgetPassword>> forgetPassword(ForgetPasswordRequest forgetPasswordRequest );
 }

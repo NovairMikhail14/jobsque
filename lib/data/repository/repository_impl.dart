@@ -40,4 +40,26 @@ class RepositoryImpl extends Repository {
           ResponseMessage.NO_INTERNET_CONNECTON));
     }
   }
+  forgetPasswordasd(){}
+  @override
+  Future<Either<Failure, ForgetPassword>> forgetPassword(ForgetPasswordRequest forgetPasswordRequest) async{
+    if (await networkInfo.isConnected) {
+      try {
+        final response = await remoteDataSource.forgetPassword(forgetPasswordRequest);
+        if (response.status == ApiInternalStatus.success) {
+          // Success
+          return Right(response.toDomain());
+        } else {
+          return left(Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+      // safe to call api
+    } else {
+      // return internet connection failure
+      return left(Failure(ResponseCode.NO_INTERNET_CONNECTON,
+          ResponseMessage.NO_INTERNET_CONNECTON));
+    }
+  }
 }

@@ -50,7 +50,6 @@ class Routes {
   static const String twoStepValidationRoute = "TwoStepValidation";
   static const String twoStepValidationDigitRoute = "TwoStepValidationDigit";
   static const String twoStepValidationPhoneNoRoute = "TwoStepValidationPhoneNo";
-
 }
 
 

@@ -10,6 +10,8 @@ import 'package:jobsque/resources/font_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/style_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
+import '../../../app/app_pref.dart';
+import '../../../app/di.dart';
 import '../../../resources/routes_manager.dart';
 import '../../login/view/login_view.dart';
 import '../cubit/onboarding_cubit.dart';
@@ -25,6 +27,7 @@ class OnboardingView extends StatefulWidget {
 class _OnboardingViewState extends State<OnboardingView> {
   final PageController _pageController = PageController();
   // final OnBoardViewModel _viewModel = OnBoardViewModel();
+  final AppPreferences _shearedPref = instance<AppPreferences>();
 
   @override
   void initState() {
@@ -97,6 +100,7 @@ class _OnboardingViewState extends State<OnboardingView> {
           ElevatedButton(
               onPressed: () {
                 if(sliderViewObject.currentIndex ==  sliderViewObject.numOfSlides-1){
+                  _shearedPref.setAppOnBoardingViewed();
                   Navigator.pushReplacementNamed(context,Routes.loginRoute);
                 }else {
                   _pageController.animateToPage(
