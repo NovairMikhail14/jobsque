@@ -1,9 +1,9 @@
 import 'package:jobsque/data/network/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:jobsque/data/network/requests.dart';
-import 'package:jobsque/domain/model/models.dart';
 import 'package:jobsque/domain/repository/repository.dart';
 import 'package:jobsque/domain/usecase/base_usecase.dart';
+import '../model/auth_models.dart';
 
 class LoginUseCase implements BaseUsecase<LoginUseCaseInput, Authentication> {
   Repository repository;

@@ -3,7 +3,7 @@ import 'package:jobsque/presentation/onboarding/cubit/onboarding_state.dart';
 
 import '../../../app/app_pref.dart';
 import '../../../app/di.dart';
-import '../../../domain/model/models.dart';
+import '../../../domain/model/onBoarding_model.dart';
 import '../../../resources/assets_manager.dart';
 import '../../../resources/strings_manager.dart';
 

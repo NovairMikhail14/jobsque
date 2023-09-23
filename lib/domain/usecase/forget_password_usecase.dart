@@ -4,7 +4,8 @@ import 'package:jobsque/data/network/requests.dart';
 import 'package:jobsque/domain/usecase/base_usecase.dart';
 import 'package:jobsque/domain/repository/repository.dart';
 
-import '../model/models.dart';
+import '../model/auth_models.dart';
+
 
 class ForgetBPasswordUseCase extends BaseUsecase<ForgetPasswordUseCaseInput,ForgetPassword>{
   Repository repository;

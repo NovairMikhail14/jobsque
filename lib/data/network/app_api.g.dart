@@ -106,7 +106,6 @@ class _AppServiceClient implements AppServiceClient {
     if (url.isAbsolute) {
       return url.toString();
     }
-
     return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }
