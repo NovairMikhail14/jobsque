@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-// part 'responses.g.dart';
+part 'job_responses.g.dart';
 
 //flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
@@ -69,6 +69,8 @@ class JobResponse {
     this.createdAt,
     this.updatedAt,
   );
+  factory JobResponse.fromJson(Map<String,dynamic> json) => _$JobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$JobResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -76,20 +78,26 @@ class FilterJobResponse extends BaseResponse {
   @JsonKey(name: "data")
   List<JobResponse>? jobResponse;
   FilterJobResponse(this.jobResponse);
+  factory FilterJobResponse.fromJson(Map<String,dynamic> json) => _$FilterJobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$FilterJobResponseToJson(this);
 }
 
 @JsonSerializable()
 class SearchJobResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<JobResponse>? jobResponse;
-  SearchJobResponse(this.jobResponse);
+  List<JobResponse>? jobListResponse;
+  SearchJobResponse(this.jobListResponse);
+  factory SearchJobResponse.fromJson(Map<String,dynamic> json) => _$SearchJobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$SearchJobResponseToJson(this);
 }
 
 @JsonSerializable()
 class GetAllJobResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<JobResponse>? jobResponse;
-  GetAllJobResponse(this.jobResponse);
+  List<JobResponse>? jobListResponse;
+  GetAllJobResponse(this.jobListResponse);
+  factory GetAllJobResponse.fromJson(Map<String,dynamic> json) => _$GetAllJobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$GetAllJobResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -97,10 +105,15 @@ class SuggestJobResponse extends BaseResponse {
   @JsonKey(name: "data")
   JobResponse? jobResponse;
   SuggestJobResponse(this.jobResponse);
+  factory SuggestJobResponse.fromJson(Map<String,dynamic> json) => _$SuggestJobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$SuggestJobResponseToJson(this);
 }
+
 @JsonSerializable()
 class JobIDResponse extends BaseResponse {
   @JsonKey(name: "data")
   JobResponse? jobResponse;
   JobIDResponse(this.jobResponse);
+  factory JobIDResponse.fromJson(Map<String,dynamic> json) => _$JobIDResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$JobIDResponseToJson(this);
 }

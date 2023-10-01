@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+part 'auth_responses.g.dart';
 
 //flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
@@ -21,7 +22,10 @@ class AuthUserResponse {
   String? createdAt;
   @JsonKey(name: "updated_at")
   String? updatedAt;
-  AuthUserResponse(this.id, this.name, this.email, this.createdAt, this.updatedAt);
+  AuthUserResponse(
+      this.id, this.name, this.email, this.createdAt, this.updatedAt);
+  factory AuthUserResponse.fromJson(Map<String,dynamic> json) => _$AuthUserResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AuthUserResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -48,6 +52,8 @@ class AuthProfileResponse {
     this.updatedAt,
     this.userId,
   );
+  factory AuthProfileResponse.fromJson(Map<String,dynamic> json) => _$AuthProfileResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AuthProfileResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -66,6 +72,8 @@ class DataResponse {
   String? updatedAt;
   DataResponse(
       this.createdAt, this.email, this.id, this.name, this.otp, this.updatedAt);
+  factory DataResponse.fromJson(Map<String,dynamic> json) => _$DataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$DataResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -76,13 +84,17 @@ class AuthenticationResponse extends BaseResponse {
   String? token;
 
   AuthenticationResponse(this.user, this.token);
+  factory AuthenticationResponse.fromJson(Map<String,dynamic> json) => _$AuthenticationResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AuthenticationResponseToJson(this);
 }
 
 @JsonSerializable()
 class ForgetPasswordResponse extends BaseResponse {
   @JsonKey(name: "user")
-  String? user;
+  AuthUserResponse? user;
   ForgetPasswordResponse(this.user);
+  factory ForgetPasswordResponse.fromJson(Map<String,dynamic> json) => _$ForgetPasswordResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ForgetPasswordResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -98,11 +110,24 @@ class RegisterResponse extends BaseResponse {
     this.profileResponse,
     this.token,
   );
+  factory RegisterResponse.fromJson(Map<String,dynamic> json) => _$RegisterResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$RegisterResponseToJson(this);
 }
 
 @JsonSerializable()
-class ProfileViewResponse extends BaseResponse {
+class ProfileDataViewResponse extends BaseResponse {
   @JsonKey(name: "data")
   DataResponse? user;
-  ProfileViewResponse(this.user);
+  ProfileDataViewResponse(this.user);
+  factory ProfileDataViewResponse.fromJson(Map<String,dynamic> json) => _$ProfileDataViewResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ProfileDataViewResponseToJson(this);
+}
+
+@JsonSerializable()
+class UpdateNamePasswordResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  DataResponse? user;
+  UpdateNamePasswordResponse(this.user);
+  factory UpdateNamePasswordResponse.fromJson(Map<String,dynamic> json) => _$UpdateNamePasswordResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$UpdateNamePasswordResponseToJson(this);
 }

@@ -1,5 +1,3 @@
-
-
 class Job {
   int id;
   String name;
@@ -47,7 +45,22 @@ class FilterJob {
   FilterJob(this.jobResponse);
 }
 
+class SearchJob {
+  List<Job> job;
+  SearchJob(this.job);
+}
+
+class SuggestJob {
+  Job? job;
+  SuggestJob(this.job);
+}
+
+class JobID {
+  Job? job;
+  JobID(this.job);
+}
+
 class GetAllJob {
-  List<Job>? jobResponse;
+  List<Job> jobResponse;
   GetAllJob(this.jobResponse);
 }

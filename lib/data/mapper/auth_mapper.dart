@@ -54,8 +54,20 @@ extension RegisterResponseMapper on RegisterResponse? {
   }
 }
 
-extension ProfileResponseMapper on ProfileViewResponse? {
-  ProfilePage toDomain() {
-    return ProfilePage(this?.user.toDomain());
+extension ProfileResponseMapper on ProfileDataViewResponse? {
+  ProfileDataView toDomain() {
+    return ProfileDataView(this?.user.toDomain());
+  }
+}
+
+extension ForgetPasswordResponseMapper on ForgetPasswordResponse? {
+  ForgetPassword toDomain() {
+    return ForgetPassword(this?.user.toDomain());
+  }
+}
+
+extension UpdateNamePasswordResponseseMapper on UpdateNamePasswordResponse? {
+  UpdateNamePassword toDomain() {
+    return UpdateNamePassword(this?.user.toDomain());
   }
 }

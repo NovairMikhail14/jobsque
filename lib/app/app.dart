@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jobsque/app/di.dart';
-import 'package:jobsque/presentation/login/cubit/login_cubit.dart';
 import 'package:jobsque/resources/theme_manager.dart';
-
-import '../presentation/onboarding/cubit/onboarding_cubit.dart';
+import '../presentation/home_screen/home_screen_view.dart';
+import '../presentation/pages_auth/login/cubit/login_cubit.dart';
+import '../presentation/pages_startup/onboarding/cubit/onboarding_cubit.dart';
 import '../resources/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: getApplicationTheme(),
         debugShowCheckedModeBanner: false,
-        onGenerateRoute: RouteGenerator.getRoute,
-        initialRoute: Routes.splashRoute,
-        // home: ProfileView(),
+        // onGenerateRoute: RouteGenerator.getRoute,
+        // initialRoute: Routes.splashRoute,
+        home: HomeScreenView(),
       ),
     );
   }

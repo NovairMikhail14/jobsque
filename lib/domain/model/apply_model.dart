@@ -34,6 +34,6 @@ class Apply {
 }
 
 class ShowApply {
-  List<ApplyData>? applyListData;
+  List<ApplyData> applyListData;
   ShowApply(this.applyListData);
 }

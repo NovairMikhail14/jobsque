@@ -28,6 +28,6 @@ class CompanySendMessage {
 }
 
 class AllChat {
-  List<Chat>? chatList;
+  List<Chat> chatList;
   AllChat(this.chatList);
 }

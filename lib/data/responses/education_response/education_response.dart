@@ -1,4 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
+part 'education_response.g.dart';
+
 
 @JsonSerializable()
 class BaseResponse {
@@ -7,7 +9,7 @@ class BaseResponse {
   @JsonKey(name: "message")
   String? message;
 }
-
+@JsonSerializable()
 class EducationDataResponse {
   @JsonKey(name: "id")
   String? id;
@@ -38,15 +40,22 @@ class EducationDataResponse {
     this.updatedAt,
     this.userId,
   );
+  factory EducationDataResponse.fromJson(Map<String,dynamic> json) => _$EducationDataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$EducationDataResponseToJson(this);
 }
-
+@JsonSerializable()
 class AddEducationResponse extends BaseResponse {
   @JsonKey(name: "data")
   EducationDataResponse? educationDataResponse;
   AddEducationResponse(this.educationDataResponse);
+  factory AddEducationResponse.fromJson(Map<String,dynamic> json) => _$AddEducationResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AddEducationResponseToJson(this);
 }
+@JsonSerializable()
 class ShowAllEducationResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<EducationDataResponse?> showAllEducationDataResponse;
+  List<EducationDataResponse>? showAllEducationDataResponse;
   ShowAllEducationResponse(this.showAllEducationDataResponse);
+  factory ShowAllEducationResponse.fromJson(Map<String,dynamic> json) => _$ShowAllEducationResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ShowAllEducationResponseToJson(this);
 }

@@ -1,7 +1,9 @@
 import 'package:jobsque/app/constants.dart';
 import 'package:jobsque/app/extensions.dart';
+
 import '../../domain/model/notification_model.dart';
 import '../responses/notification_response/notification_response.dart';
+
 
 
 extension NotificationResponseMapper on NotificationResponse? {

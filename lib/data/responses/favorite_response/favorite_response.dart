@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:jobsque/domain/model/auth_models.dart';
+part 'favorite_response.g.dart';
 
 @JsonSerializable()
 class BaseResponse {
@@ -68,6 +69,8 @@ class FavoriteJobResponse {
     this.createdAt,
     this.updatedAt,
   );
+  factory FavoriteJobResponse.fromJson(Map<String,dynamic> json) => _$FavoriteJobResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$FavoriteJobResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -93,6 +96,8 @@ class FavoriteUserResponse {
     this.userId,
     this.jobId,
   );
+  factory FavoriteUserResponse.fromJson(Map<String,dynamic> json) => _$FavoriteUserResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$FavoriteUserResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -102,6 +107,8 @@ class DataResponse {
   @JsonKey(name: "job")
   FavoriteJobResponse? jobResponse;
   DataResponse(this.jobResponse, this.userResponse);
+  factory DataResponse.fromJson(Map<String,dynamic> json) => _$DataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$DataResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -109,6 +116,8 @@ class AddFavoriteResponse extends BaseResponse {
   @JsonKey(name: "data")
   DataResponse? dataResponse;
   AddFavoriteResponse(this.dataResponse);
+  factory AddFavoriteResponse.fromJson(Map<String,dynamic> json) => _$AddFavoriteResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AddFavoriteResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -116,4 +125,6 @@ class ShowAllFavoriteResponse extends BaseResponse {
   @JsonKey(name: "data")
   List<FavoriteJobResponse>? jobListResponse;
   ShowAllFavoriteResponse(this.jobListResponse);
+  factory ShowAllFavoriteResponse.fromJson(Map<String,dynamic> json) => _$ShowAllFavoriteResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ShowAllFavoriteResponseToJson(this);
 }

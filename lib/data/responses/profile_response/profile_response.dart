@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+part 'profile_response.g.dart';
 
 @JsonSerializable()
 class BaseResponse {
@@ -42,6 +43,8 @@ class ProfileResponse {
     this.personalDetailed,
     this.education,
   );
+  factory ProfileResponse.fromJson(Map<String,dynamic> json) => _$ProfileResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ProfileResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -96,30 +99,8 @@ class ProfileDataResponse {
     this.createdAt,
     this.updatedAt,
   );
-}
-
-@JsonSerializable()
-class PortfolioResponse {
-  @JsonKey(name: "name")
-  String? name;
-  @JsonKey(name: "image")
-  String? image;
-  @JsonKey(name: "user_id")
-  int? userId;
-  @JsonKey(name: "updated_at")
-  DateTime? updatedAt;
-  @JsonKey(name: "created_at")
-  DateTime? createdAt;
-  @JsonKey(name: "id")
-  int? id;
-  PortfolioResponse(
-    this.name,
-    this.image,
-    this.userId,
-    this.updatedAt,
-    this.createdAt,
-    this.id,
-  );
+  factory ProfileDataResponse.fromJson(Map<String,dynamic> json) => _$ProfileDataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ProfileDataResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -148,37 +129,41 @@ class PortfolioDataResponse {
     this.createdAt,
     this.id,
   );
+  factory PortfolioDataResponse.fromJson(Map<String,dynamic> json) => _$PortfolioDataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$PortfolioDataResponseToJson(this);
 }
 
-@JsonSerializable()
-class UpdateProfileResponse extends BaseResponse {
-  @JsonKey(name: "data")
-  ProfileResponse? profileResponse;
-  UpdateProfileResponse(this.profileResponse);
-}
+// @JsonSerializable()
+// class UpdateProfileResponse extends BaseResponse {
+//   @JsonKey(name: "data")
+//   ProfileResponse? profileResponse;
+//   UpdateProfileResponse(this.profileResponse);
+// }
+
+// @JsonSerializable()
+// class EditProfileResponse extends BaseResponse {
+//   @JsonKey(name: "data")
+//   ProfileResponse? profileResponse;
+//   EditProfileResponse(this.profileResponse);
+// }
+
+// @JsonSerializable()
+// class EditProfileLanguageResponse extends BaseResponse {
+//   @JsonKey(name: "data")
+//   ProfileResponse? profileResponse;
+//   EditProfileLanguageResponse(this.profileResponse);
+// }
 
 @JsonSerializable()
-class EditProfileResponse extends BaseResponse {
-  @JsonKey(name: "data")
-  ProfileResponse? profileResponse;
-  EditProfileResponse(this.profileResponse);
-}
-
-@JsonSerializable()
-class EditProfileLanguageResponse extends BaseResponse {
-  @JsonKey(name: "data")
-  ProfileResponse? profileResponse;
-  EditProfileLanguageResponse(this.profileResponse);
-}
-
-@JsonSerializable()
-class GetDataPortfoliosResponse extends BaseResponse {
+class GetDataPortfoliosResponse {
   @JsonKey(name: "profile")
   ProfileDataResponse? profileDataResponse;
   @JsonKey(name: "portfolio")
   List<PortfolioDataResponse>? portfolioDataListResponse;
   GetDataPortfoliosResponse(
       this.portfolioDataListResponse, this.profileDataResponse);
+  factory GetDataPortfoliosResponse.fromJson(Map<String,dynamic> json) => _$GetDataPortfoliosResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$GetDataPortfoliosResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -186,6 +171,8 @@ class GetPortfoliosResponse extends BaseResponse {
   @JsonKey(name: "data")
   GetDataPortfoliosResponse? getDataPortfoliosResponse;
   GetPortfoliosResponse(this.getDataPortfoliosResponse);
+  factory GetPortfoliosResponse.fromJson(Map<String,dynamic> json) => _$GetPortfoliosResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$GetPortfoliosResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -193,6 +180,17 @@ class EditPortfolioResponse extends BaseResponse {
   @JsonKey(name: "data")
   ProfileResponse? profileResponse;
   EditPortfolioResponse(this.profileResponse);
+  factory EditPortfolioResponse.fromJson(Map<String,dynamic> json) => _$EditPortfolioResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$EditPortfolioResponseToJson(this);
+}
+
+@JsonSerializable()
+class AddPortfolioResponse extends BaseResponse {
+  @JsonKey(name: "data")
+  PortfolioDataResponse? portfolioDataResponse;
+  AddPortfolioResponse(this.portfolioDataResponse);
+  factory AddPortfolioResponse.fromJson(Map<String,dynamic> json) => _$AddPortfolioResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$AddPortfolioResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -200,4 +198,6 @@ class DeletePortfolioResponse extends BaseResponse {
   @JsonKey(name: "data")
   PortfolioDataResponse? portfolioDataResponse;
   DeletePortfolioResponse(this.portfolioDataResponse);
+  factory DeletePortfolioResponse.fromJson(Map<String,dynamic> json) => _$DeletePortfolioResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$DeletePortfolioResponseToJson(this);
 }

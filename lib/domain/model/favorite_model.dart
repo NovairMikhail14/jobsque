@@ -63,12 +63,12 @@ class Data {
   Data(this.job, this.user);
 }
 
-class Favorite {
+class AddFavorite {
   Data? data;
-  Favorite(this.data);
+  AddFavorite(this.data);
 }
 
 class ShowAllFavorite {
-  List<Job>? jobList;
+  List<Job> jobList;
   ShowAllFavorite(this.jobList);
 }

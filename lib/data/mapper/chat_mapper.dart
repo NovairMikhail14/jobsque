@@ -41,6 +41,6 @@ extension NonNulllist on List<ChatResponse>? {
 
 extension AllChatResponseMapper on AllChatResponse {
   AllChat toDomain() {
-    return AllChat(this?.chatListResponse.toDomain().toList());
+    return AllChat(this?.chatListResponse.toDomain().toList()??[]);
   }
 }

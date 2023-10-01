@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-// part 'responses.g.dart';
+part 'company_response.g.dart';
 
 //flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
@@ -42,11 +42,15 @@ class CompanyResponse {
     this.createdAt,
     this.updatedAt,
   );
+  factory CompanyResponse.fromJson(Map<String,dynamic> json) => _$CompanyResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$CompanyResponseToJson(this);
 }
 
 @JsonSerializable()
 class GetAllCompanyResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<CompanyResponse> companyListResponce;
+  List<CompanyResponse>? companyListResponce;
   GetAllCompanyResponse(this.companyListResponce);
+  factory GetAllCompanyResponse.fromJson(Map<String,dynamic> json) => _$GetAllCompanyResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$GetAllCompanyResponseToJson(this);
 }

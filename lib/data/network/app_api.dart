@@ -23,7 +23,7 @@ abstract class AppServiceClient {
 
   // Auth
   @GET("/auth/profile/")
-  Future<ProfileViewResponse> profilePage();
+  Future<ProfileDataViewResponse> profilePage(@AUTHORIZATION String token);
 
   @POST("/auth/login")
   Future<AuthenticationResponse> login(
@@ -31,33 +31,43 @@ abstract class AppServiceClient {
 
   @POST("/auth/otp/")
   Future<ForgetPasswordResponse> forgetPassword(
-    @Field("email") String email,
-  );
+      @Field("email") String email,
+      );
 
   @POST("/auth/register")
   Future<RegisterResponse> register(@Field("name") String name,
       @Field("email") String email, @Field("password") String password);
 
   @POST("/auth/user/update/")
-  Future<ForgetPasswordResponse> updateNamePassword(
-    @Field("name") String name,
-    @Field("email") String email,
-  );
+  Future<UpdateNamePasswordResponse> updateNamePassword(
+      @AUTHORIZATION String token,
+      @Field("name") String name,
+      @Field("email") String email,
+      );
 
   // Profile
-  @PUT("/user/profile/update/")
-  Future<UpdateProfileResponse> updateProfile(@AUTHORIZATION String token);
-
+  @POST("/user/profile/portofolios")
+  Future<AddPortfolioResponse> addPortofolio(@AUTHORIZATION String token);
   @PUT("user/profile/edit/")
-  Future<EditProfileResponse> editProfile(@AUTHORIZATION String token);
-
-  @PUT("/user/profile/update/")
-  Future<EditProfileLanguageResponse> editProfileLanguage(
+  Future<EditPortfolioResponse> editportofolio(@AUTHORIZATION String token);
+  @GET("/user/profile/portofolios")
+  Future<GetPortfoliosResponse> getAllPortofolios(@AUTHORIZATION String token);
+  @DELETE("/user/profile/portofolios")
+  Future<DeletePortfolioResponse> deletePortofolios(
       @AUTHORIZATION String token);
 
-  @PUT("/user/profile/update/")
-  Future<EditPortfolioResponse> editPortfolio(@AUTHORIZATION String token);
+//   @PUT("/user/profile/update/")
+//   Future<UpdateProfileResponse> updateProfile(@AUTHORIZATION String token);
 
+//   @PUT("user/profile/edit/")
+//   Future<EditProfileResponse> editProfile(@AUTHORIZATION String token);
+
+//   @PUT("/user/profile/update/")
+//   Future<EditProfileLanguageResponse> editProfileLanguage(
+//       @AUTHORIZATION String token);
+
+//   @PUT("/user/profile/update/")
+//   Future<EditPortfolioResponse> editPortfolio(@AUTHORIZATION String token);
 
 // favorites
   @PUT("/favorites/")
@@ -102,8 +112,8 @@ abstract class AppServiceClient {
       @Field("start") String start,
       @Field("end") String end,
       );
-  @PUT("/education/")
-  Future<EndExperienceResponse> endEducation(
+  @PUT("/experince/")
+  Future<EndExperienceResponse> endExperience(
       @AUTHORIZATION String token,
       @Field("end") String end,
       );
@@ -164,11 +174,9 @@ abstract class AppServiceClient {
       @AUTHORIZATION String token,
       );
 
-
-
 // Job
   @POST("/jobs/filter")
-  Future<FilterJobResponse> filterJobR(
+  Future<FilterJobResponse> filterJob(
       @AUTHORIZATION String token,
       @Field("name") String name,
       @Field("location") String location,
@@ -176,7 +184,7 @@ abstract class AppServiceClient {
       );
 
   @POST("/jobs/search")
-  Future<SearchJobResponse> searchJobR(
+  Future<SearchJobResponse> searchJob(
       @AUTHORIZATION String token,
       @Field("name") String name,
       );
@@ -194,5 +202,3 @@ abstract class AppServiceClient {
       @AUTHORIZATION String token,
       );
 }
-
-

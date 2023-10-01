@@ -4,6 +4,7 @@ import 'package:jobsque/app/extensions.dart';
 
 import '../../domain/model/apply_model.dart';
 
+
 extension ApplyDataResponseMapper on ApplyDataResponse? {
   ApplyData toDomain() {
     return ApplyData(
@@ -23,7 +24,7 @@ extension ApplyDataResponseMapper on ApplyDataResponse? {
   }
 }
 
-extension ApplyResponseMapper on ApplyResponse {
+extension ApplyResponseMapper on ApplyResponse? {
   Apply toDomain() {
     return Apply(this?.applyDataResponse.toDomain());
   }
@@ -34,13 +35,15 @@ extension NonNulllist on List<ApplyDataResponse>? {
     if (this == null) {
       return [];
     } else {
-      return this!.map((e) => e.toDomain()).toList();
+      return (this?.map((e) => e.toDomain())?? const Iterable.empty()).cast<ApplyData>().toList();
     }
   }
 }
 
 extension ShowApplyResponseMapper on ShowApplyResponse? {
+
+  // List<ApplyData> data = (this?.applyDataListResponse?.map((e) => e.toDomain())?? const Iterable.empty()).cast<ApplyData>().toList();
   ShowApply toDomain() {
-    return ShowApply(this?.applyDataListResponse.toDomain());
+    return ShowApply((this?.applyDataListResponse.toDomain()??const Iterable.empty()).cast<ApplyData>().toList());
   }
 }

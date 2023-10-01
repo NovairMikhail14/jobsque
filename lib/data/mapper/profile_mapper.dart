@@ -1,8 +1,9 @@
 import 'package:jobsque/app/extensions.dart';
-
-import '../../app/constants.dart';
+import 'package:jobsque/app/constants.dart';
 import '../../domain/model/profile_model.dart';
 import '../responses/profile_response/profile_response.dart';
+
+
 
 extension ProfileResponseMapper on ProfileResponse? {
   Profile toDomain() {
@@ -71,23 +72,23 @@ extension PortfolioDataResponseMapper on PortfolioDataResponse? {
   }
 }
 
-extension UpdateProfileResponseMapper on UpdateProfileResponse? {
-  UpdateProfile toDomain() {
-    return UpdateProfile(this?.profileResponse.toDomain());
-  }
-}
+// extension UpdateProfileResponseMapper on UpdateProfileResponse? {
+//   UpdateProfile toDomain() {
+//     return UpdateProfile(this?.profileResponse.toDomain());
+//   }
+// }
 
-extension EditProfileResponse on EditPortfolioResponse? {
-  EditProfile toDomain() {
-    return EditProfile(this?.profileResponse.toDomain());
-  }
-}
+// extension EditProfileResponse on EditPortfolioResponse? {
+//   EditProfile toDomain() {
+//     return EditProfile(this?.profileResponse.toDomain());
+//   }
+// }
 
-extension EditProfileLanguageResponseMapper on EditProfileLanguageResponse? {
-  EditProfileLanguage toDomain() {
-    return EditProfileLanguage(this?.profileResponse.toDomain());
-  }
-}
+// extension EditProfileLanguageResponseMapper on EditProfileLanguageResponse? {
+//   EditProfileLanguage toDomain() {
+//     return EditProfileLanguage(this?.profileResponse.toDomain());
+//   }
+// }
 
 extension NonNulllist on List<PortfolioDataResponse>? {
   List<PortfolioData> toDomain() {
@@ -102,7 +103,7 @@ extension NonNulllist on List<PortfolioDataResponse>? {
 extension GetDataPortfoliosResponseMapper on GetDataPortfoliosResponse? {
   GetDataPortfolios toDomain() {
     return GetDataPortfolios(this?.profileDataResponse.toDomain(),
-        this?.portfolioDataListResponse.toDomain());
+        this?.portfolioDataListResponse.toDomain()??[]);
   }
 }
 
@@ -121,5 +122,11 @@ extension EditPortfolioResponseMapper on EditPortfolioResponse? {
 extension DeletePortfolioResponseMapper on DeletePortfolioResponse? {
   DeletePortfolio toDomain() {
     return DeletePortfolio(this?.portfolioDataResponse.toDomain());
+  }
+}
+
+extension AddPortfolioResponseMapper on AddPortfolioResponse? {
+  AddPortfolio toDomain() {
+    return AddPortfolio(this?.portfolioDataResponse.toDomain());
   }
 }

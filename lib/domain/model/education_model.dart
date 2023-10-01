@@ -25,3 +25,13 @@ class Education {
   EducationData? educationData;
   Education(this.educationData);
 }
+
+class ShowAllEducation {
+  List<EducationData> educationData;
+  ShowAllEducation(this.educationData);
+}
+
+class AddEducation {
+  EducationData? educationData;
+  AddEducation(this.educationData);
+}

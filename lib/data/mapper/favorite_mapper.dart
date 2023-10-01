@@ -1,7 +1,9 @@
 import 'package:jobsque/app/constants.dart';
-import '../../domain/model/favorite_model.dart';
-import '../responses/favorite_response/favorite_response.dart';
+import 'package:jobsque/data/responses/favorite_response/favorite_response.dart';
+
 import 'package:jobsque/app/extensions.dart';
+
+import '../../domain/model/favorite_model.dart';
 
 extension JobResponseMapper on FavoriteJobResponse? {
   Job toDomain() {
@@ -48,8 +50,8 @@ extension DataResponseMapper on DataResponse? {
 }
 
 extension FavoriteResponseMapper on AddFavoriteResponse? {
-  Favorite toDomain() {
-    return Favorite(this?.dataResponse.toDomain());
+  AddFavorite toDomain() {
+    return AddFavorite(this?.dataResponse.toDomain());
   }
 }
 
@@ -65,6 +67,6 @@ extension NonNulllist on List<FavoriteJobResponse>? {
 
 extension ShowAllFavoriteResponseMapper on ShowAllFavoriteResponse? {
   ShowAllFavorite toDomain() {
-    return ShowAllFavorite(this?.jobListResponse.toDomain());
+    return ShowAllFavorite(this?.jobListResponse.toDomain()??[]);
   }
 }

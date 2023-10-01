@@ -46,6 +46,24 @@ extension FilterJobResponseMapper on FilterJobResponse? {
 
 extension GetAllJobResponseMapper on GetAllJobResponse? {
   GetAllJob toDomain() {
-    return GetAllJob(this?.jobResponse.toDomain());
+    return GetAllJob(this?.jobListResponse.toDomain()??[]);
+  }
+}
+
+extension SearchJobResponseMapper on SearchJobResponse? {
+  SearchJob toDomain() {
+    return SearchJob(this?.jobListResponse.toDomain()??[]);
+  }
+}
+
+extension SuggestJobResponseMapper on SuggestJobResponse? {
+  SuggestJob toDomain() {
+    return SuggestJob(this?.jobResponse.toDomain());
+  }
+}
+
+extension JobIDResponseMapper on JobIDResponse? {
+  JobID toDomain() {
+    return JobID(this?.jobResponse.toDomain());
   }
 }

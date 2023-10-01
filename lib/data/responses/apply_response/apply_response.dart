@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-// part 'responses.g.dart';
+part 'apply_response.g.dart';
+
 
 //flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
@@ -51,18 +52,24 @@ class ApplyDataResponse {
     this.createdAt,
     this.id,
   );
+  factory ApplyDataResponse.fromJson(Map<String,dynamic> json) => _$ApplyDataResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ApplyDataResponseToJson(this);
 }
 
 @JsonSerializable()
 class ApplyResponse extends BaseResponse {
   @JsonKey(name: "data")
-  ApplyDataResponse applyDataResponse;
+  ApplyDataResponse? applyDataResponse;
   ApplyResponse(this.applyDataResponse);
+  factory ApplyResponse.fromJson(Map<String,dynamic> json) => _$ApplyResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ApplyResponseToJson(this);
 }
 
 @JsonSerializable()
 class ShowApplyResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<ApplyDataResponse> applyDataListResponse;
+  List<ApplyDataResponse>? applyDataListResponse;
   ShowApplyResponse(this.applyDataListResponse);
+  factory ShowApplyResponse.fromJson(Map<String,dynamic> json) => _$ShowApplyResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$ShowApplyResponseToJson(this);
 }

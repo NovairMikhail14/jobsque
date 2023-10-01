@@ -37,7 +37,7 @@ class Authentication {
 }
 
 class ForgetPassword {
-  String user;
+  User? user;
   ForgetPassword(this.user);
 }
 
@@ -48,7 +48,12 @@ class Register {
   Register(this.data, this.profile, this.token);
 }
 
-class ProfilePage {
+class ProfileDataView {
   Data? data;
-  ProfilePage(this.data);
+  ProfileDataView(this.data);
+}
+
+class UpdateNamePassword {
+  Data? data;
+  UpdateNamePassword(this.data);
 }

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-// part 'responses.g.dart';
+part 'notification_response.g.dart';
 
 //flutter packages pub run build_runner build --delete-conflicting-outputs
 @JsonSerializable()
@@ -39,6 +39,8 @@ class NotificationResponse {
     this.createdAt,
     this.updatedAt,
   );
+  factory NotificationResponse.fromJson(Map<String,dynamic> json) => _$NotificationResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$NotificationResponseToJson(this);
 }
 
 @JsonSerializable()
@@ -46,4 +48,6 @@ class GetNotificationResponse extends BaseResponse {
   @JsonKey(name: "data")
   NotificationResponse? notificationResponse;
   GetNotificationResponse(this.notificationResponse);
+  factory GetNotificationResponse.fromJson(Map<String,dynamic> json) => _$GetNotificationResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$GetNotificationResponseToJson(this);
 }
