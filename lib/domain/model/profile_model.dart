@@ -113,7 +113,7 @@ class EditProfileLanguage {
 
 class GetDataPortfolios {
   ProfileData? profileData;
-  List<PortfolioData> portfolioDataList;
+  List<PortfolioData?>? portfolioDataList;
   GetDataPortfolios(this.profileData, this.portfolioDataList);
 }
 

@@ -417,8 +417,9 @@ class RepositoryImpl extends Repository {
       try {
         final response =
         await remoteDataSource.getAllPortofolios(allPortofolioseRequest);
-        if (response.status == ApiInternalStatus.success) {
+        if (response.status == true) {
           // Success
+          print("-----AAA${response.status == true}");
           return Right(response.toDomain());
         } else {
           return left(Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT));

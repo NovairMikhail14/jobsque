@@ -12,13 +12,14 @@ class LoginCubit extends Cubit<LoginState> {
   final AppPreferences _shearedPref = instance<AppPreferences>();
   login(String username,String password) async{
     emit(LoginLoading());
+
     try{
       (await loginUseCase.execute(LoginUseCaseInput(username, password))).fold((l) {
         emit(LoginFailed());
         return l.message;
-      }, (r) {
-        _shearedPref.setAppLoggedIn(r.token);
-        print("Token--------------> ${r.token}");
+      }, (r) async {
+        await _shearedPref.setAppToken(r.token);
+        await _shearedPref.setAppLoggedIn();
         emit(LoginSuccess());
         return r;
       });

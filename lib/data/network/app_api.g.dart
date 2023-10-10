@@ -24,7 +24,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<ProfileDataViewResponse> profilePage(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ProfileDataViewResponse>(Options(
@@ -150,7 +151,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'name': name,
       'email': email,
@@ -177,11 +179,30 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<AddPortfolioResponse> addPortofolio(String token) async {
+  Future<AddPortfolioResponse> addPortofolio(
+    File cv_file,
+    File image,
+    String token,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final Map<String, dynamic>? _data = null;
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final _data = FormData();
+    _data.files.add(MapEntry(
+      'cv_file',
+      MultipartFile.fromFileSync(
+        cv_file.path,
+        filename: cv_file.path.split(Platform.pathSeparator).last,
+      ),
+    ));
+    _data.files.add(MapEntry(
+      'image',
+      MultipartFile.fromFileSync(
+        image.path,
+        filename: image.path.split(Platform.pathSeparator).last,
+      ),
+    ));
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AddPortfolioResponse>(Options(
       method: 'POST',
@@ -204,10 +225,35 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<EditPortfolioResponse> editportofolio(String token) async {
+  Future<EditPortfolioResponse> editportofolio(
+    String? bio,
+    String? address,
+    String? mobile,
+    String? language,
+    String? interested_work,
+    String? offline_place,
+    String? remote_place,
+    String? experience,
+    String? personal_detailed,
+    String? education,
+    String? token,
+  ) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'bio': bio,
+      r'address': address,
+      r'mobile': mobile,
+      r'language': language,
+      r'interested_work': interested_work,
+      r'offline_place': offline_place,
+      r'remote_place': remote_place,
+      r'experience': experience,
+      r'personal_detailed': personal_detailed,
+      r'education': education,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<EditPortfolioResponse>(Options(
@@ -217,7 +263,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'user/profile/edit/',
+              '/user/profile/edit/',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -234,7 +280,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<GetPortfoliosResponse> getAllPortofolios(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetPortfoliosResponse>(Options(
@@ -261,7 +308,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<DeletePortfolioResponse> deletePortofolios(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<DeletePortfolioResponse>(Options(
@@ -292,7 +340,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'user_id': userId,
       'job_id': jobId,
@@ -326,7 +375,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'user_id': userId,
       'job_id': jobId,
@@ -356,7 +406,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<ShowAllEducationResponse> showEducation(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ShowAllEducationResponse>(Options(
@@ -391,7 +442,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'universty': universty,
       'title': title,
@@ -434,7 +486,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'user_id': userId,
       'postion': postion,
@@ -472,7 +525,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {'end': end};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<EndExperienceResponse>(Options(
@@ -512,7 +566,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'name': name,
       'email': end,
@@ -551,7 +606,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<ShowApplyResponse> showApply(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ShowApplyResponse>(Options(
@@ -575,10 +631,11 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<GetAllCompanyResponse> getAllCompany(String token) async {
+  Future<GetAllCompanyResponse> getAllCompany(dynamic token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetAllCompanyResponse>(Options(
@@ -610,7 +667,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'massage': massage,
       'user_id': userId,
@@ -646,7 +704,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'massage': massage,
       'user_id': userId,
@@ -681,7 +740,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'user_id': userId,
       'comp_id': compId,
@@ -711,7 +771,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<GetNotificationResponse> getNotification(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<GetNotificationResponse>(Options(
@@ -743,7 +804,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {
       'name': name,
       'location': location,
@@ -777,7 +839,8 @@ class _AppServiceClient implements AppServiceClient {
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {'name': name};
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<SearchJobResponse>(Options(
@@ -804,7 +867,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<GetAllJobResponse> getAllJob(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<GetAllJobResponse>(Options(
@@ -831,7 +895,8 @@ class _AppServiceClient implements AppServiceClient {
   Future<SuggestJobResponse> suggestJob(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<SuggestJobResponse>(Options(
@@ -855,10 +920,14 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<JobIDResponse> jobID(String token) async {
+  Future<JobIDResponse> jobID(
+    String token,
+    String jobIdl,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<JobIDResponse>(Options(
@@ -868,7 +937,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/jobs/',
+              '/jobs/${jobIdl}',
               queryParameters: queryParameters,
               data: _data,
             )

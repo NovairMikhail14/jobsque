@@ -7,22 +7,27 @@ class MainTextField extends StatelessWidget {
   bool isTitleBlack;
   IconData icon;
   bool iconAppear;
+  String? initialValue;
+  String? validationMessage;
   TextEditingController? controller;
-  Function(String)? onChanged;
+   Function(String)? onChanged;
   bool obscureText;
-
   MainTextField(
       {this.icon = Icons.add,
       this.isTitleBlack = false,
       this.isTitle = false,
       this.onChanged,
+        this.initialValue,
+        this.validationMessage,
         this.obscureText = false,
       this.iconAppear = false,
       required this.hintText, this.controller,
       super.key});
-
   @override
   Widget build(BuildContext context) {
+    // validation(validationMessage){
+    //   validationMessage == null ? null : validationMessage;
+    // }
     return Container(
       margin: EdgeInsets.only(top: AppMargin.m10),
       child: Column(
@@ -38,17 +43,20 @@ class MainTextField extends StatelessWidget {
           TextFormField(
             obscureText: obscureText,
               controller: controller,
+              initialValue: initialValue,
               onChanged: onChanged,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'field is required';
                 }
+                return null;
               },
               decoration: InputDecoration(
                   contentPadding: const EdgeInsets.fromLTRB(AppPadding.p17,
                       AppPadding.p12, AppPadding.p17, AppPadding.p12),
                   prefixIcon: iconAppear ? Icon(icon) : null,
                   hintText: hintText,
+                  errorText: (validationMessage =="null" ? null :validationMessage) ,
                   hintStyle: Theme.of(context).textTheme.bodyMedium,
                   border: const OutlineInputBorder())),
         ],

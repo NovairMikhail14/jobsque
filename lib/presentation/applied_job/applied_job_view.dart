@@ -27,7 +27,9 @@ class _AppliedJobViewState extends State<AppliedJobView> {
         body: Container(
             child: Column(
               children: [
-                MainToggleSwitch(list: [AppStrings.appliedJobActive,AppStrings.appliedJobRejected],),
+                MainToggleSwitch(list: [AppStrings.appliedJobActive,AppStrings.appliedJobRejected],index: 0,onToggle: (p0) {
+
+                },),
                 SizedBox(height: AppSize.s20,),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: AppPadding.p8),

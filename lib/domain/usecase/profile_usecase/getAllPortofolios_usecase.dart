@@ -1,5 +1,6 @@
 
 import 'package:dartz/dartz.dart';
+import 'package:get/get.dart';
 import 'package:jobsque/data/network/failure.dart';
 import 'package:jobsque/data/network/requests.dart';
 import 'package:jobsque/domain/usecase/base_usecase.dart';
@@ -11,11 +12,11 @@ class GetAllPortofolioseUseCaseInput {
   GetAllPortofolioseUseCaseInput(this.token);
 }
 class GetAllPortofolioseUseCase
-    extends BaseUsecase<GetAllPortofolioseUseCaseInput,GetPortfolios> {
+    implements BaseUsecase<GetAllPortofolioseUseCaseInput,GetPortfolios> {
 Repository repository;
 GetAllPortofolioseUseCase(this.repository);
 
   @override
   Future<Either<Failure, GetPortfolios>> execute(GetAllPortofolioseUseCaseInput input) {
-    return repository.getAllPortofolios(GetAllPortofolioseRequest(input.token));
+    return  repository.getAllPortofolios(GetAllPortofolioseRequest(input.token));
   }}

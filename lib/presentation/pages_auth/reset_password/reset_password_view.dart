@@ -6,6 +6,7 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../../../resources/routes_manager.dart';
 import '../login/view/login_view.dart';
 
 
@@ -65,7 +66,9 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   ),
                 ],
               ),
-              MainButton(text: AppStrings.btnResetPassword, onPress: () {}),
+              MainButton(text: AppStrings.btnResetPassword, onPress: () {
+                Navigator.of(context).pushNamed( Routes.CheckEmailViewRoute);
+              }),
             ],
           ),
         ));

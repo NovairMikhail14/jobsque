@@ -8,8 +8,10 @@ import 'package:jobsque/domain/repository/repository.dart';
 import '../../model/job_model.dart';
 class JobIDUseCaseInput {
   String token;
+  String jobId;
   JobIDUseCaseInput(
     this.token,
+  this.jobId
   );
 }
 class JobIDUseCase
@@ -19,5 +21,5 @@ JobIDUseCase(this.repository);
 
   @override
   Future<Either<Failure, JobID>> execute(JobIDUseCaseInput input) {
-    return repository.jobID(JobIDRequest(input.token));
+    return repository.jobID(JobIDRequest(input.token,input.jobId));
   }}

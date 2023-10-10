@@ -40,7 +40,7 @@ class _UploadPortfolioViewState extends State<UploadPortfolioView> {
                 children: [
                   SvgPicture.asset("",height: AppSize.s20),
                   MainTitleBlock(title: "#Job", subtitle: "#Jobubtitle",textAlign: TextAlign.center,alignment: CrossAxisAlignment.center),
-                  JobSteps(isboarder: false,),
+                  JobSteps(isboarder: false,indexComplete: 2),
                   Text(AppStrings.appliedJobUploadPortfolio,style:Theme.of(context).textTheme.headlineSmall,),
                   Text(AppStrings.appliedJobDataCorrect,style:Theme.of(context).textTheme.bodyMedium,),
                   SizedBox(height: AppSize.s12,),

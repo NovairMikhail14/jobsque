@@ -18,9 +18,13 @@ class MainTitleBlock extends StatelessWidget {
             crossAxisAlignment: alignment,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.headlineLarge,textAlign: textAlign ,
+              SizedBox(
+                width: MediaQuery.of(context).size.width*0.9,
+                child: Text(
+                  title,
+                  style: Theme.of(context).textTheme.headlineLarge,textAlign: textAlign ,
+                  maxLines: 2,
+                ),
               ),
               SizedBox(
                 height: AppSize.s4,

@@ -20,6 +20,7 @@ class ColorManager {
 
   static Color danger500 = const Color(0xFFFF472B);
   static Color success500 = const Color(0xFF60C631);
+  static Color success700 = const Color(0xFF2E8E18);
 
   static Color splashColor = const Color(0xffD6E4FF);
 

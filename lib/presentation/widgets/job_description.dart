@@ -5,66 +5,73 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
-class JobDescription extends StatefulWidget {
+class JobDescription extends StatelessWidget {
   List descriptionList;
-  String salary;
+  int salary;
   String period;
   bool isCenter;
+  bool isDark;
+  Color? color;
 
   JobDescription(
-      {required this.descriptionList,this.isCenter = false, this.salary = "", this.period = ""});
+      {required this.descriptionList,
+        this.isCenter = false,
+        this.color = null,
+        this.isDark = false,
+        this.salary=0,
+        this.period = ""});
 
-  @override
-  State<JobDescription> createState() => _JobDescriptionState();
-}
-
-class _JobDescriptionState extends State<JobDescription> {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Row(
-              mainAxisSize: MainAxisSize.min,
-              children: List.generate(widget.descriptionList.length, (index) {
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: List.generate(descriptionList.length, (index) {
                 return Container(
                     padding: EdgeInsets.fromLTRB(AppPadding.p12, AppPadding.p10,
                         AppPadding.p12, AppPadding.p10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(AppSize.s20),
-                        color: ColorManager.primary100),
+                        color: color == null
+                            ? (isDark
+                            ? ColorManager.general.withOpacity(0.14)
+                            : ColorManager.primary100)
+                            : color),
                     child: Text(
-                      widget.descriptionList[index],
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: ColorManager.primary500),
+                      descriptionList[index],
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: isDark
+                              ? ColorManager.general
+                              : ColorManager.primary500),
                     ),
-                    margin:widget.isCenter? EdgeInsets.only(right: AppMargin.m4,bottom: AppMargin.m10):EdgeInsets.only(right: AppMargin.m10,bottom: AppMargin.m10));
-              })
-              ),
-          isCenter(),
-          Text(widget.period != "" ? "Posted ${widget.period} days ago" : ""),
-          Text(widget.salary != "" ? "${widget.salary}/Month" : ""),
+                    margin: isCenter
+                        ? EdgeInsets.only(
+                        right: AppMargin.m4,
+                        bottom: AppMargin.m10,
+                        top: AppMargin.m10)
+                        : EdgeInsets.only(
+                        right: AppMargin.m10,
+                        bottom: AppMargin.m10,
+                        top: AppMargin.m10));
+              })),
+          SizedBox(width: salary != 0 ? AppSize.s80:0,),
+          Text(period != "" ? "Posted $period days ago" : ""),
+          Text(
+            salary != 0? "\$${(salary/ 1000).toString().split(".")[0] }K" : "",
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+              color: ColorManager.success700,
+            ),
+          ),
+          Text(salary != 0 ? "/ Month" : ""),
         ],
       ),
     );
   }
-
-  Widget isCenter() {
-    if(widget.isCenter){
-      return SizedBox();
-    }
-    else{
-      return Spacer(
-        flex: 1,
-      );
-    }
-  }
-
-  // isCenter(){
-  //   widget.isCenter? Spacer():Spacer(flex: 1,);
-  // }
 }

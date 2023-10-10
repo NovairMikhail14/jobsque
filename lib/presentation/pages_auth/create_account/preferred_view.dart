@@ -3,6 +3,7 @@ import 'package:jobsque/presentation/widgets/main_button.dart';
 import 'package:jobsque/presentation/widgets/main_titleblock.dart';
 import 'package:jobsque/presentation/widgets/toggleswitch.dart';
 import 'package:jobsque/resources/color_manger.dart';
+import 'package:jobsque/resources/routes_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
@@ -30,7 +31,9 @@ class _PreferredViewState extends State<PreferredView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MainToggleSwitch(list: ["Work From Office", "Remote Work"]),
+              MainToggleSwitch(list: ["Work From Office", "Remote Work"],index: 0,onToggle: (p0) {
+
+              },),
             ],
           ),
           Text(
@@ -56,7 +59,9 @@ class _PreferredViewState extends State<PreferredView> {
                   PreferredList(image: "", text: AppStrings.countryBrazil),
                 ]),
               )),
-          MainButton(text: AppStrings.btnNext, onPress: () {})
+          MainButton(text: AppStrings.btnNext, onPress: () {
+            Navigator.of(context).pushNamed(Routes.AccountSetupViewRoute);
+          })
         ],
       ),
     );

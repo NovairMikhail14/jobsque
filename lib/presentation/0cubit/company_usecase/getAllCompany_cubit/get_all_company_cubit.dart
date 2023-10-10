@@ -9,4 +9,10 @@ class GetAllCompanyCubit extends Cubit<GetAllCompanyState> {
   GetAllCompanyCubit(this.getAllCompanyUseCase) : super(GetAllCompanyInitial());
   final AppPreferences _shearedPref = instance<AppPreferences>();
 GetAllCompanyUseCase getAllCompanyUseCase;
+
+  getAllCompany() async {
+    String? token = await _shearedPref.getAppToken();
+    print("getAllJobs-------->$token");
+    (await getAllCompanyUseCase.execute(GetAllCompanyUseCaseInput (token!))).fold((l) => l, (r) => r);
+  }
 }

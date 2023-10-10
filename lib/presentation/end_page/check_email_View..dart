@@ -8,6 +8,8 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../../resources/routes_manager.dart';
+
 
 class CheckEmailView extends StatefulWidget {
   const CheckEmailView({Key? key}) : super(key: key);
@@ -54,7 +56,9 @@ class _CheckEmailViewState extends State<CheckEmailView> {
               ),
             ),
               Spacer(flex: 1,),
-              MainButton(text: AppStrings.btnOpenEmail, onPress: () {}),
+              MainButton(text: AppStrings.btnOpenEmail, onPress: () {
+                Navigator.of(context).pushNamed( Routes.CheckEmailViewRoute);
+              }),
             ],
           ),
         ));

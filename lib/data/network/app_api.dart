@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:jobsque/app/constants.dart';
 import 'package:jobsque/data/network/dio_factory.dart';
@@ -23,7 +25,8 @@ abstract class AppServiceClient {
 
   // Auth
   @GET("/auth/profile/")
-  Future<ProfileDataViewResponse> profilePage(@AUTHORIZATION String token);
+  Future<ProfileDataViewResponse> profilePage(
+      @Header('Authorization') String token);
 
   @POST("/auth/login")
   Future<AuthenticationResponse> login(
@@ -31,8 +34,8 @@ abstract class AppServiceClient {
 
   @POST("/auth/otp/")
   Future<ForgetPasswordResponse> forgetPassword(
-      @Field("email") String email,
-      );
+    @Field("email") String email,
+  );
 
   @POST("/auth/register")
   Future<RegisterResponse> register(@Field("name") String name,
@@ -40,165 +43,189 @@ abstract class AppServiceClient {
 
   @POST("/auth/user/update/")
   Future<UpdateNamePasswordResponse> updateNamePassword(
-      @AUTHORIZATION String token,
-      @Field("name") String name,
-      @Field("email") String email,
-      );
+    @Header('Authorization') String token,
+    @Field("name") String name,
+    @Field("email") String email,
+  );
 
   // Profile
   @POST("/user/profile/portofolios")
-  Future<AddPortfolioResponse> addPortofolio(@AUTHORIZATION String token);
-  @PUT("user/profile/edit/")
-  Future<EditPortfolioResponse> editportofolio(@AUTHORIZATION String token);
+  Future<AddPortfolioResponse> addPortofolio(
+      @Part(name: "cv_file", ) File cv_file,
+      @Part(name: "image",) File image,
+      @Header('Authorization') String token);
+
+  @PUT("/user/profile/edit/")
+  Future<EditPortfolioResponse> editportofolio(
+      @Query("bio")String? bio,
+      @Query("address") String? address,
+      @Query("mobile") String? mobile,
+      @Query("language") String? language,
+      @Query("interested_work") String? interested_work,
+      @Query("offline_place") String? offline_place,
+      @Query("remote_place") String? remote_place,
+      @Query("experience") String? experience,
+      @Query("personal_detailed") String? personal_detailed,
+      @Query("education") String? education,
+      @Header('Authorization') String? token);
+
   @GET("/user/profile/portofolios")
-  Future<GetPortfoliosResponse> getAllPortofolios(@AUTHORIZATION String token);
+  Future<GetPortfoliosResponse> getAllPortofolios(
+      @Header('Authorization') String token);
+
   @DELETE("/user/profile/portofolios")
   Future<DeletePortfolioResponse> deletePortofolios(
-      @AUTHORIZATION String token);
+
+  @Header('Authorization') String token);
 
 //   @PUT("/user/profile/update/")
-//   Future<UpdateProfileResponse> updateProfile(@AUTHORIZATION String token);
+//   Future<UpdateProfileResponse> updateProfile( @Header('Authorization') String token);
 
 //   @PUT("user/profile/edit/")
-//   Future<EditProfileResponse> editProfile(@AUTHORIZATION String token);
+//   Future<EditProfileResponse> editProfile( @Header('Authorization') String token);
 
 //   @PUT("/user/profile/update/")
 //   Future<EditProfileLanguageResponse> editProfileLanguage(
-//       @AUTHORIZATION String token);
+//        @Header('Authorization') String token);
 
 //   @PUT("/user/profile/update/")
-//   Future<EditPortfolioResponse> editPortfolio(@AUTHORIZATION String token);
+//   Future<EditPortfolioResponse> editPortfolio( @Header('Authorization') String token);
 
 // favorites
   @PUT("/favorites/")
   Future<AddFavoriteResponse> addFavorite(
-      @AUTHORIZATION String token,
-      @Field("user_id") String userId,
-      @Field("job_id") String jobId,
-      );
+    @Header('Authorization') String token,
+    @Field("user_id") String userId,
+    @Field("job_id") String jobId,
+  );
 
   @GET("/favorites/")
   Future<ShowAllFavoriteResponse> showAllFavorite(
-      @AUTHORIZATION String token,
-      @Field("user_id") String userId,
-      @Field("job_id") String jobId,
-      );
+    @Header('Authorization') String token,
+    @Field("user_id") String userId,
+    @Field("job_id") String jobId,
+  );
 
   // education
   @GET("/education/")
   Future<ShowAllEducationResponse> showEducation(
-      @AUTHORIZATION String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @POST("/education/")
   Future<AddEducationResponse> addEducation(
-      @AUTHORIZATION String token,
-      @Field("universty") String universty,
-      @Field("title") String title,
-      @Field("start") String start,
-      @Field("end") String end,
-      @Field("user_id") String userId,
-      @Field("profile_id") String profileId,
-      );
+    @Header('Authorization') String token,
+    @Field("universty") String universty,
+    @Field("title") String title,
+    @Field("start") String start,
+    @Field("end") String end,
+    @Field("user_id") String userId,
+    @Field("profile_id") String profileId,
+  );
+
 // experince
   @POST("/experince/")
   Future<AddExperienceResponse> addExperience(
-      @AUTHORIZATION String token,
-      @Field("user_id") String userId,
-      @Field("postion") String postion,
-      @Field("type_work") String typeWork,
-      @Field("comp_name") String compName,
-      @Field("location") String location,
-      @Field("start") String start,
-      @Field("end") String end,
-      );
+    @Header('Authorization') String token,
+    @Field("user_id") String userId,
+    @Field("postion") String postion,
+    @Field("type_work") String typeWork,
+    @Field("comp_name") String compName,
+    @Field("location") String location,
+    @Field("start") String start,
+    @Field("end") String end,
+  );
+
   @PUT("/experince/")
   Future<EndExperienceResponse> endExperience(
-      @AUTHORIZATION String token,
-      @Field("end") String end,
-      );
+    @Header('Authorization') String token,
+    @Field("end") String end,
+  );
 
   // Apply Job
   @POST("/apply/")
   Future<ApplyResponse> apply(
-      @AUTHORIZATION String token,
-      @Field("name") String name,
-      @Field("email") String end,
-      @Field("mobile") String mobile,
-      @Field("work_type") String workType,
-      @Field("other_file") String otherFile,
-      @Field("jobs_id") String jobsId,
-      @Field("user_id") String userId,
-      @Field("reviewed") String reviewed,
-      @Field("updated_at") String updatedAt,
-      @Field("created_at") String createdAt,
-      @Field("id") String id,
-      );
+    @Header('Authorization') String token,
+    @Field("name") String name,
+    @Field("email") String end,
+    @Field("mobile") String mobile,
+    @Field("work_type") String workType,
+    @Field("other_file") String otherFile,
+    @Field("jobs_id") String jobsId,
+    @Field("user_id") String userId,
+    @Field("reviewed") String reviewed,
+    @Field("updated_at") String updatedAt,
+    @Field("created_at") String createdAt,
+    @Field("id") String id,
+  );
 
   @GET("/apply/")
   Future<ShowApplyResponse> showApply(
-      @AUTHORIZATION String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   // Company
   @GET("/showCompany/")
   Future<GetAllCompanyResponse> getAllCompany(
-      @AUTHORIZATION String token,
-      );
+    @Header('Authorization') token,
+  );
 
   // Chat
   @POST("/chat/user")
   Future<UserSendMessageResponse> userSendMessage(
-      @AUTHORIZATION String token,
-      @Field("massage") String massage,
-      @Field("user_id") String userId,
-      @Field("comp_id") String compId,
-      );
+    @Header('Authorization') String token,
+    @Field("massage") String massage,
+    @Field("user_id") String userId,
+    @Field("comp_id") String compId,
+  );
+
   @POST("/chat/company")
   Future<CompanySendMessageResponse> companySendMessage(
-      @AUTHORIZATION String token,
-      @Field("massage") String massage,
-      @Field("user_id") String userId,
-      @Field("comp_id") String compId,
-      );
+    @Header('Authorization') String token,
+    @Field("massage") String massage,
+    @Field("user_id") String userId,
+    @Field("comp_id") String compId,
+  );
+
   @GET("/chat/")
   Future<AllChatResponse> allChat(
-      @AUTHORIZATION String token,
-      @Field("user_id") String userId,
-      @Field("comp_id") String compId,
-      );
+    @Header('Authorization') String token,
+    @Field("user_id") String userId,
+    @Field("comp_id") String compId,
+  );
 
   // notification
   @GET("/notification/")
   Future<GetNotificationResponse> getNotification(
-      @AUTHORIZATION String token,
-      );
+    @Header('Authorization') String token,
+  );
 
 // Job
   @POST("/jobs/filter")
   Future<FilterJobResponse> filterJob(
-      @AUTHORIZATION String token,
-      @Field("name") String name,
-      @Field("location") String location,
-      @Field("salary") String salary,
-      );
+    @Header('Authorization') String token,
+    @Field("name") String name,
+    @Field("location") String location,
+    @Field("salary") String salary,
+  );
 
   @POST("/jobs/search")
   Future<SearchJobResponse> searchJob(
-      @AUTHORIZATION String token,
-      @Field("name") String name,
-      );
+    @Header('Authorization') String token,
+    @Field("name") String name,
+  );
 
   @GET("/jobs/")
   Future<GetAllJobResponse> getAllJob(
-      @AUTHORIZATION String token,
-      );
+    @Header('Authorization') String token,
+  );
+
   @GET("/jobs/sugest/")
   Future<SuggestJobResponse> suggestJob(
-      @AUTHORIZATION String token,
-      );
-  @GET("/jobs/")
+    @Header('Authorization') String token,
+  );
+
+  @GET("/jobs/{jobIdl}")
   Future<JobIDResponse> jobID(
-      @AUTHORIZATION String token,
-      );
+      @Header('Authorization') String token, @Path() String jobIdl);
 }

@@ -28,7 +28,8 @@ class _SplashViewState extends State<SplashView> {
       const Duration(seconds: AppConstants.splashDelay),
       () async {
         if (await _shearedPref.isLoggedIn()){
-          return Navigator.pushReplacementNamed(context, Routes.phoneNoRoute);
+          print("--------->${_shearedPref.isLoggedIn()}");
+          return Navigator.pushReplacementNamed(context, Routes.HomeScreenViewRoute);
         }else if(await _shearedPref.isAppOnBoardingViewed()) {
           return Navigator.pushReplacementNamed(context, Routes.loginRoute);
         }else{

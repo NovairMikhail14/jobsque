@@ -27,7 +27,7 @@ abstract class Repository {
   Future<Either<Failure, AddPortfolio>> addPortofolio(
       AddPortofolioRequest addPortofolioRequest);
   Future<Either<Failure, GetPortfolios>> getAllPortofolios(
-      GetAllPortofolioseRequest allPortofolioseRequest);
+      GetAllPortofolioseRequest getAllPortofolioseRequest);
   Future<Either<Failure, EditPortfolio>> editportofolio(
       EditPortfolioRequest editPortfolioRequest);
   Future<Either<Failure, DeletePortfolio>> deletePortofolios(

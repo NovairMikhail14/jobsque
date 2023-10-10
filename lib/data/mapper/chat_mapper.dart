@@ -17,13 +17,13 @@ extension ChatResponseMapper on ChatResponse? {
   }
 }
 
-extension UserSendMessageResponseMapper on UserSendMessageResponse {
+extension UserSendMessageResponseMapper on UserSendMessageResponse? {
   UserSendMessage toDomain() {
-    return UserSendMessage(this.chatResponse.toDomain());
+    return UserSendMessage(this?.chatResponse.toDomain());
   }
 }
 
-extension CompanySendMessageResponseMapper on CompanySendMessageResponse {
+extension CompanySendMessageResponseMapper on CompanySendMessageResponse? {
   CompanySendMessage toDomain() {
     return CompanySendMessage(this?.chatResponse.toDomain());
   }
@@ -39,7 +39,7 @@ extension NonNulllist on List<ChatResponse>? {
   }
 }
 
-extension AllChatResponseMapper on AllChatResponse {
+extension AllChatResponseMapper on AllChatResponse? {
   AllChat toDomain() {
     return AllChat(this?.chatListResponse.toDomain().toList()??[]);
   }

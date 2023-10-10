@@ -61,6 +61,6 @@ class JobID {
 }
 
 class GetAllJob {
-  List<Job> jobResponse;
-  GetAllJob(this.jobResponse);
+  List<Job> jobList;
+  GetAllJob(this.jobList);
 }

@@ -4,7 +4,6 @@ import 'package:jobsque/data/network/failure.dart';
 import 'package:jobsque/data/network/requests.dart';
 import 'package:jobsque/domain/usecase/base_usecase.dart';
 import 'package:jobsque/domain/repository/repository.dart';
-
 import '../../model/company_model.dart';
 class GetAllCompanyUseCaseInput {
   String token;

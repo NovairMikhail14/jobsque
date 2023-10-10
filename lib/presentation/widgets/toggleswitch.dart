@@ -5,7 +5,9 @@ import 'package:toggle_switch/toggle_switch.dart';
 
 class MainToggleSwitch extends StatefulWidget {
   List<String> list;
-  MainToggleSwitch({required this.list, Key? key}) : super(key: key);
+  Function(int?)? onToggle;
+  int index;
+  MainToggleSwitch({required this.index, required this.onToggle, required this.list, Key? key}) : super(key: key);
 
   @override
   State<MainToggleSwitch> createState() => _MainToggleSwitchState();
@@ -20,16 +22,15 @@ class _MainToggleSwitchState extends State<MainToggleSwitch> {
         centerText: true,
         radiusStyle: true,
         minWidth: MediaQuery.of(context).size.width,
-        initialLabelIndex: 0,
         cornerRadius: AppSize.s20,
-        activeBgColors:
-        List.generate(widget.list.length, (index) => [ColorManager.primary900]),
+        initialLabelIndex:widget.index,
+        activeBgColor:[ColorManager.primary900],
         activeFgColor: ColorManager.general,
         inactiveBgColor: ColorManager.neutral100,
         inactiveFgColor: ColorManager.neutral500,
         totalSwitches: widget.list.length,
         labels: widget.list,
-        onToggle: (index) {},
+        onToggle: widget.onToggle,
       ),
     );
   }

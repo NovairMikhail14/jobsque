@@ -2,6 +2,7 @@ import 'package:flutter/material.dart' hide BoxDecoration, BoxShadow;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_inset_box_shadow/flutter_inset_box_shadow.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:jobsque/presentation/widgets/main_button.dart';
 import 'package:jobsque/resources/assets_manager.dart';
 import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/constant_manager.dart';
@@ -29,12 +30,6 @@ class _OnboardingViewState extends State<OnboardingView> {
   final AppPreferences _shearedPref = instance<AppPreferences>();
 
   @override
-  void initState() {
-    // _viewModel.start();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocBuilder<OnBoardingCubit, OnBoardingState>(
       builder: (context, state) {
@@ -52,7 +47,10 @@ class _OnboardingViewState extends State<OnboardingView> {
           title: SvgPicture.asset(ImageAssets.logo, height: AppSize.s20),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                _shearedPref.setAppOnBoardingViewed();
+                Navigator.pushNamed(context, Routes.createAccountRoute);
+              },
               child: Text(AppStrings.skip,
                   style: Theme.of(context).textTheme.bodyMedium),
             )
@@ -80,6 +78,7 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   Widget _getBottomSheetWidget(SliderViewObject sliderViewObject) {
     return Container(
+      padding: EdgeInsets.symmetric(horizontal: AppPadding.p20),
       color: ColorManager.general,
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -96,24 +95,21 @@ class _OnboardingViewState extends State<OnboardingView> {
                 )
             ],
           ),
-          ElevatedButton(
-              onPressed: () {
-                if(sliderViewObject.currentIndex ==  sliderViewObject.numOfSlides-1){
-                  _shearedPref.setAppOnBoardingViewed();
-                  Navigator.pushReplacementNamed(context,Routes.loginRoute);
-                }else {
-                  _pageController.animateToPage(
-                      BlocProvider.of<OnBoardingCubit>(context).onScrollNext(),
-                      duration: const Duration(
-                          microseconds: AppConstants.sliderAnimationTime),
-                      curve: Curves.linear);
-                }
-              },
-              child: Text(
-                sliderViewObject.sliderObject.bottomText,
-                style: getMediumStyle(
-                    color: ColorManager.general, fontSize: FontSize.s16),
-              ))
+          MainButton(
+            onPress: () {
+              if(sliderViewObject.currentIndex ==  sliderViewObject.numOfSlides-1){
+                _shearedPref.setAppOnBoardingViewed();
+                Navigator.pushReplacementNamed(context,Routes.loginRoute);
+              }else {
+                _pageController.animateToPage(
+                    BlocProvider.of<OnBoardingCubit>(context).onScrollNext(),
+                    duration: const Duration(
+                        microseconds: AppConstants.sliderAnimationTime),
+                    curve: Curves.linear);
+              }
+            },
+            text: sliderViewObject.sliderObject.bottomText,
+          ),
         ],
       ),
     );
@@ -175,6 +171,7 @@ class OnBoardingPage extends StatelessWidget {
             ),
           ],
         ),
+        SizedBox(height: AppSize.s12,),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p14),
           child: RichText(
@@ -182,15 +179,15 @@ class OnBoardingPage extends StatelessWidget {
               TextSpan(
                   text: _sliderObject.title1,
                   style: getMediumStyle(
-                      color: ColorManager.neutral900, fontSize: FontSize.s26)),
+                      color: ColorManager.neutral900, fontSize: FontSize.s32)),
               TextSpan(
                   text: _sliderObject.title2,
                   style: getMediumStyle(
-                      color: ColorManager.primary900, fontSize: FontSize.s26)),
+                      color: ColorManager.primary900, fontSize: FontSize.s32)),
               TextSpan(
                   text: _sliderObject.title3,
                   style: getMediumStyle(
-                      color: ColorManager.neutral900, fontSize: FontSize.s26)),
+                      color: ColorManager.neutral900, fontSize: FontSize.s32)),
             ]),
           ),
         ),
@@ -202,7 +199,7 @@ class OnBoardingPage extends StatelessWidget {
           child: Text(
             _sliderObject.subTitle,
             textAlign: TextAlign.start,
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
         const SizedBox(

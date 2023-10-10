@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jobsque/resources/color_manger.dart';
+import 'package:jobsque/resources/routes_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class SocialButtons extends StatefulWidget {
@@ -20,8 +22,10 @@ class _SocialButtonsState extends State<SocialButtons> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           OutlinedButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.golf_course),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context,Routes.loginRoute);
+            },
+            icon: FaIcon(FontAwesomeIcons.google),
             label: Text(
               "Google",
               style: TextStyle(color: ColorManager.socialText),
@@ -36,7 +40,7 @@ class _SocialButtonsState extends State<SocialButtons> {
           ),
           OutlinedButton.icon(
             onPressed: () {},
-            icon: Icon(Icons.face),
+            icon: FaIcon(FontAwesomeIcons.facebook),
             label: Text(
               "Facebook",
               style: TextStyle(color: ColorManager.socialText),

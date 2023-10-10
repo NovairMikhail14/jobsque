@@ -5,6 +5,7 @@ import 'package:jobsque/presentation/widgets/main_textfield.dart';
 import 'package:jobsque/presentation/widgets/main_titleblock.dart';
 import 'package:jobsque/resources/assets_manager.dart';
 import 'package:jobsque/resources/color_manger.dart';
+import 'package:jobsque/resources/routes_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
@@ -55,7 +56,9 @@ class _AccountSetupViewState extends State<AccountSetupView> {
               ),
             ),
               Spacer(flex: AppSize.s1.toInt()),
-              MainButton(text: AppStrings.btnGetStarted, onPress: () {}),
+              MainButton(text: AppStrings.btnGetStarted, onPress: () {
+                Navigator.of(context).pushNamed(Routes.HomeScreenViewRoute);
+              }),
             ],
           ),
         ));

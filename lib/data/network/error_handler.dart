@@ -46,7 +46,7 @@ class ApiInternalStatus {
 }
 
 class ResponseMessage {
-  static const String SUCCESS = "Success";
+  static const String SUCCESS = "OK";
   static const String NO_CONTENT = "Success";
 
   static const String BAD_REQUEST = "Bad request, try again later";
@@ -131,7 +131,7 @@ class ErrorHandler {
         if (error.response?.statusCode != null &&
             error.response?.statusMessage != null) {
           return Failure(error.response?.statusCode! ?? 0,
-              error.response?.statusMessage! ?? "");
+              error.response?.statusMessage.toString()?? "",error.response?.data?? "");
         } else {
           return DataSource.DEFAULT.getFailure();
         }

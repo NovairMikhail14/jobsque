@@ -1,5 +1,7 @@
 // Auth
 
+import 'dart:io';
+
 class ProfileViewRequest {
   String token;
   ProfileViewRequest(this.token);
@@ -32,8 +34,10 @@ class UpdateNamePasswordRequest {
 
 // Profile
 class AddPortofolioRequest {
+  File cv_file;
+  File image;
   String token;
-  AddPortofolioRequest(this.token);
+  AddPortofolioRequest(this.cv_file, this.image, this.token);
 }
 
 class GetAllPortofolioseRequest {
@@ -42,8 +46,30 @@ class GetAllPortofolioseRequest {
 }
 
 class EditPortfolioRequest {
-  String token;
-  EditPortfolioRequest(this.token);
+  String? token;
+  String? bio;
+  String? address;
+  String? mobile;
+  String? language;
+  String? interested_work;
+  String? offline_place;
+  String? remote_place;
+  String? experience;
+  String? personal_detailed;
+  String? education;
+
+  EditPortfolioRequest(
+      this.token,
+      this.bio,
+      this.address,
+      this.mobile,
+      this.language,
+      this.interested_work,
+      this.offline_place,
+      this.remote_place,
+      this.experience,
+      this.personal_detailed,
+      this.education);
 }
 
 class DeletePortofoliosRequest {
@@ -201,8 +227,9 @@ class FilterJobRequest {
 
 class JobIDRequest {
   String token;
+  String jobId;
   JobIDRequest(
-      this.token,
+      this.token,this.jobId
       );
 }
 

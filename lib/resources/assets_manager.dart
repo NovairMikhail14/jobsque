@@ -13,4 +13,11 @@ class ImageAssets{
   static const String nothingSaved = "${imagePath}endpage/NothingSaved.svg";
   static const String passwordChanged = "${imagePath}endpage/PasswordChanged.svg";
   static const String searchNoFound = "${imagePath}endpage/SearchNoFound.svg";
+  static const String bezier = "${imagePath}interset/bezier.svg";
+  static const String Developer_Category = "${imagePath}interset/Developer_Category.svg";
+  static const String Ilustrator_Category = "${imagePath}interset/Ilustrator_Category.svg";
+  static const String Information_technology_category = "${imagePath}interset/Information_technology_category.svg";
+  static const String Management_Category = "${imagePath}interset/Management_Category.svg";
+  static const String Research_and_Analytics_category = "${imagePath}interset/Research_and_Analytics_category.svg";
+
 }

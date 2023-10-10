@@ -1,5 +1,8 @@
 
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jobsque/presentation/widgets/add_pdf.dart';
 import 'package:jobsque/presentation/widgets/language_radioswitch.dart';
@@ -16,7 +19,7 @@ class PortfolioView extends StatefulWidget {
 }
 
 class _PortfolioViewState extends State<PortfolioView> {
-  TextEditingController td = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,15 @@ class _PortfolioViewState extends State<PortfolioView> {
             child: Column(
               children: [
                 MainTitleBlock(title: AppStrings.prtfoTitle, subtitle: ""),
-                AddPDF(),
+                InkWell(child: AddPDF(),onTap: () async {
+                  FilePickerResult? result = await FilePicker.platform.pickFiles();
+                  if (result != null) {
+                    File file = File(result.files.single.path!);
+                  } else {
+                    // User canceled the picker
+                  }
+
+                },),
               ],
             )
         )

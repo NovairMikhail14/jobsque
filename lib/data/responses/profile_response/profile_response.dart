@@ -58,25 +58,25 @@ class ProfileDataResponse {
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "mobile")
-  dynamic? mobile;
+  String? mobile;
   @JsonKey(name: "address")
-  dynamic? address;
+  String? address;
   @JsonKey(name: "language")
-  dynamic? language;
+  String? language;
   @JsonKey(name: "interested_work")
-  dynamic? interestedWork;
+  String? interestedWork;
   @JsonKey(name: "offline_place")
-  dynamic? offlinePlace;
+  String? offlinePlace;
   @JsonKey(name: "remote_place")
-  dynamic? remotePlace;
+  String? remotePlace;
   @JsonKey(name: "bio")
-  dynamic? bio;
+  String? bio;
   @JsonKey(name: "education")
-  dynamic? education;
+  String? education;
   @JsonKey(name: "experience")
-  dynamic? experience;
+  String? experience;
   @JsonKey(name: "personal_detailed")
-  dynamic? personalDetailed;
+  String? personalDetailed;
   @JsonKey(name: "created_at")
   DateTime? createdAt;
   @JsonKey(name: "updated_at")

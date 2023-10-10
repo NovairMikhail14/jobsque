@@ -17,8 +17,7 @@ import '../cubit/login_cubit.dart';
 
 class LoginView extends StatelessWidget {
   LoginView({Key? key}) : super(key: key);
-  TextEditingController td = TextEditingController();
-  GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
   String? email, password;
 
   @override
@@ -85,7 +84,7 @@ class LoginView extends StatelessWidget {
                                   .titleMedium!
                                   .apply(color: ColorManager.primary500)),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordView(),));
+                            Navigator.of(context).pushNamed( Routes.ResetPasswordView);
                           },
                         ),
                       ],
@@ -111,7 +110,7 @@ class LoginView extends StatelessWidget {
                                   .titleMedium!
                                   .apply(color: ColorManager.primary500)),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => CreateAccountView(),));
+                            Navigator.pushReplacementNamed(context, Routes.createAccountRoute);
                           },
                         ),
                       ],

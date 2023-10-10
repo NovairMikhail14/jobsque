@@ -15,21 +15,28 @@ import '../responses/profile_response/profile_response.dart';
 abstract class RemoteDataSource {
   // Auth
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
+
   Future<ForgetPasswordResponse> forgetPassword(
       ForgetPasswordRequest forgetPasswordRequest);
+
   Future<RegisterResponse> register(RegisterRequest registerRequest);
+
   Future<ProfileDataViewResponse> profileDataView(
       ProfileViewRequest profileViewRequest);
+
   Future<UpdateNamePasswordResponse> updateNamePassword(
       UpdateNamePasswordRequest updateProfileRequest);
 
 // Profile
   Future<AddPortfolioResponse> addPortofolio(
       AddPortofolioRequest addPortofolioRequest);
+
   Future<GetPortfoliosResponse> getAllPortofolios(
       GetAllPortofolioseRequest allPortofolioseRequest);
+
   Future<EditPortfolioResponse> editportofolio(
       EditPortfolioRequest editPortfolioRequest);
+
   Future<DeletePortfolioResponse> deletePortofolios(
       DeletePortofoliosRequest deletePortofoliosRequest);
 
@@ -90,6 +97,7 @@ abstract class RemoteDataSource {
 
 class RemoteDataSourceImp implements RemoteDataSource {
   AppServiceClient appServiceClient;
+
   RemoteDataSourceImp(this.appServiceClient);
 
   @override
@@ -114,7 +122,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<AddEducationResponse> addEducation(
       AddEducationRequest addEducationRequest) async {
     return await appServiceClient.addEducation(
-        addEducationRequest.token,
+        "Bearer ${addEducationRequest.token}",
         addEducationRequest.universty,
         addEducationRequest.title,
         addEducationRequest.start,
@@ -127,7 +135,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<AddExperienceResponse> addExperience(
       AddExperienceRequest addExperienceRequest) async {
     return await appServiceClient.addExperience(
-        addExperienceRequest.token,
+        "Bearer ${addExperienceRequest.token}",
         addExperienceRequest.userId,
         addExperienceRequest.postion,
         addExperienceRequest.typeWork,
@@ -140,26 +148,29 @@ class RemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<AddFavoriteResponse> addFavorite(
       AddFavoriteRequest addFavoriteRequest) async {
-    return await appServiceClient.addFavorite(addFavoriteRequest.token,
-        addFavoriteRequest.userId, addFavoriteRequest.jobId);
+    return await appServiceClient.addFavorite(
+        "Bearer ${addFavoriteRequest.token}",
+        addFavoriteRequest.userId,
+        addFavoriteRequest.jobId);
   }
 
   @override
   Future<AddPortfolioResponse> addPortofolio(
       AddPortofolioRequest addPortofolioRequest) async {
-    return await appServiceClient.addPortofolio(addPortofolioRequest.token);
+    return await appServiceClient
+        .addPortofolio(addPortofolioRequest.cv_file,addPortofolioRequest.image,"Bearer ${addPortofolioRequest.token}" );
   }
 
   @override
   Future<AllChatResponse> allChat(AllChatRequest allChatRequest) async {
-    return await appServiceClient.allChat(
-        allChatRequest.token, allChatRequest.userId, allChatRequest.compId);
+    return await appServiceClient.allChat("Bearer ${allChatRequest.token}",
+        allChatRequest.userId, allChatRequest.compId);
   }
 
   @override
   Future<ApplyResponse> apply(ApplyRequest applyRequest) async {
     return await appServiceClient.apply(
-        applyRequest.token,
+        "Bearer ${applyRequest.token}",
         applyRequest.name,
         applyRequest.end,
         applyRequest.mobile,
@@ -177,7 +188,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<CompanySendMessageResponse> companySendMessage(
       CompanySendMessageRequest companySendMessageRequest) async {
     return await appServiceClient.companySendMessage(
-        companySendMessageRequest.token,
+        "Bearer ${companySendMessageRequest.token}",
         companySendMessageRequest.massage,
         companySendMessageRequest.userId,
         companySendMessageRequest.compId);
@@ -186,27 +197,40 @@ class RemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<DeletePortfolioResponse> deletePortofolios(
       DeletePortofoliosRequest deletePortofoliosRequest) async {
-    return await appServiceClient
-        .deletePortofolios(deletePortofoliosRequest.token);
+    return await appServiceClient.deletePortofolios(
+      "Bearer ${deletePortofoliosRequest.token}",
+    );
   }
 
   @override
   Future<EditPortfolioResponse> editportofolio(
       EditPortfolioRequest editPortfolioRequest) async {
-    return await appServiceClient.editportofolio(editPortfolioRequest.token);
+    return await appServiceClient.editportofolio(
+        editPortfolioRequest.bio,
+        editPortfolioRequest.address,
+        editPortfolioRequest.mobile,
+        editPortfolioRequest.language,
+        editPortfolioRequest.interested_work,
+        editPortfolioRequest.remote_place,
+        editPortfolioRequest.offline_place,
+        editPortfolioRequest.experience,
+        editPortfolioRequest.personal_detailed,
+        editPortfolioRequest.education,
+      "Bearer ${editPortfolioRequest.token}",
+    );
   }
 
   @override
   Future<EndExperienceResponse> endExperience(
       EndExperienceRequest endExperienceRequest) async {
     return await appServiceClient.endExperience(
-        endExperienceRequest.token, endExperienceRequest.end);
+        "Bearer ${endExperienceRequest.token}", endExperienceRequest.end);
   }
 
   @override
   Future<FilterJobResponse> filterJob(FilterJobRequest filterJobRequest) async {
     return await appServiceClient.filterJob(
-        filterJobRequest.token,
+        "Bearer ${filterJobRequest.token}",
         filterJobRequest.name,
         filterJobRequest.location,
         filterJobRequest.salary);
@@ -215,68 +239,75 @@ class RemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<GetAllCompanyResponse> getAllCompany(
       GetAllCompanyRequest getAllCompanyRequest) async {
-    return await appServiceClient.getAllCompany(getAllCompanyRequest.token);
+    return await appServiceClient
+        .getAllCompany("Bearer ${getAllCompanyRequest.token}");
   }
 
   @override
   Future<GetAllJobResponse> getAllJob(GetAllJobRequest getAllJobRequest) async {
-    return await appServiceClient.getAllJob(getAllJobRequest.token);
+    return await appServiceClient.getAllJob("Bearer ${getAllJobRequest.token}");
   }
 
   @override
   Future<GetPortfoliosResponse> getAllPortofolios(
       GetAllPortofolioseRequest allPortofolioseRequest) async {
     return await appServiceClient
-        .getAllPortofolios(allPortofolioseRequest.token);
+        .getAllPortofolios("Bearer ${allPortofolioseRequest.token}");
   }
 
   @override
   Future<GetNotificationResponse> getNotification(
       GetNotificationRequest getNotificationRequest) async {
-    return await appServiceClient.getNotification(getNotificationRequest.token);
+    return await appServiceClient
+        .getNotification("Bearer ${getNotificationRequest.token}");
   }
 
   @override
   Future<ProfileDataViewResponse> profileDataView(
       ProfileViewRequest profileViewRequest) async {
-    return await appServiceClient.profilePage(profileViewRequest.token);
+    return await appServiceClient
+        .profilePage("Bearer ${profileViewRequest.token}");
   }
 
   @override
   Future<SearchJobResponse> searchJob(SearchJobRequest searchJobRequest) async {
     return await appServiceClient.searchJob(
-        searchJobRequest.token, searchJobRequest.name);
+        "Bearer ${searchJobRequest.token}", searchJobRequest.name);
   }
 
   @override
   Future<ShowAllFavoriteResponse> showAllFavorite(
       ShowAllFavoriteRequest showAllFavoriteRequest) async {
-    return await appServiceClient.showAllFavorite(showAllFavoriteRequest.token,
-        showAllFavoriteRequest.userId, showAllFavoriteRequest.jobId);
+    return await appServiceClient.showAllFavorite(
+        "Bearer ${showAllFavoriteRequest.token}",
+        showAllFavoriteRequest.userId,
+        showAllFavoriteRequest.jobId);
   }
 
   @override
   Future<ShowApplyResponse> showApply(ShowApplyRequest showApplyRequest) async {
-    return await appServiceClient.showApply(showApplyRequest.token);
+    return await appServiceClient.showApply("Bearer ${showApplyRequest.token}");
   }
 
   @override
   Future<ShowAllEducationResponse> showEducation(
       ShowAllEducationRequest showEducationRequest) async {
-    return await appServiceClient.showEducation(showEducationRequest.token);
+    return await appServiceClient
+        .showEducation("Bearer ${showEducationRequest.token}");
   }
 
   @override
   Future<SuggestJobResponse> suggestJob(
       SuggestJobRequest suggestJobRequest) async {
-    return await appServiceClient.suggestJob(suggestJobRequest.token);
+    return await appServiceClient
+        .suggestJob("Bearer ${suggestJobRequest.token}");
   }
 
   @override
   Future<UpdateNamePasswordResponse> updateNamePassword(
       UpdateNamePasswordRequest updateNamePasswordRequest) async {
     return await appServiceClient.updateNamePassword(
-        updateNamePasswordRequest.token,
+        "Bearer ${updateNamePasswordRequest.token}",
         updateNamePasswordRequest.name,
         updateNamePasswordRequest.email);
   }
@@ -285,7 +316,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<UserSendMessageResponse> userSendMessage(
       UserSendMessageRequest userSendMessageRequest) async {
     return await appServiceClient.userSendMessage(
-        userSendMessageRequest.token,
+        "Bearer ${userSendMessageRequest.token}",
         userSendMessageRequest.massage,
         userSendMessageRequest.userId,
         userSendMessageRequest.compId);
@@ -293,6 +324,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
 
   @override
   Future<JobIDResponse> jobID(JobIDRequest jobIDRequest) async {
-    return await appServiceClient.jobID(jobIDRequest.token);
+    return await appServiceClient.jobID(
+        "Bearer ${jobIDRequest.token}", jobIDRequest.jobId);
   }
 }

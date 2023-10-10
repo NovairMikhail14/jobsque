@@ -20,4 +20,6 @@ GetAllJobUseCase(this.repository);
   @override
   Future<Either<Failure, GetAllJob>> execute(GetAllJobUseCaseInput input) {
     return repository.getAllJob(GetAllJobRequest(input.token));
-  }}
+
+  }
+  }

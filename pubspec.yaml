@@ -55,6 +55,8 @@ dependencies:
   get: ^4.6.5
   freezed: ^2.4.1
   freezed_annotation: ^2.4.1
+  font_awesome_flutter: ^10.4.0
+  file_picker: ^5.3.1
 
 
 dev_dependencies:
@@ -95,6 +97,12 @@ flutter:
     - assets/images/onboarding/onboarding1.png
     - assets/images/onboarding/onboarding2.png
     - assets/images/onboarding/onboarding3.png
+    - assets/images/interset/bezier.svg
+    - assets/images/interset/Developer_Category.svg
+    - assets/images/interset/Ilustrator_Category.svg
+    - assets/images/interset/Information_technology_category.svg
+    - assets/images/interset/Management_Category.svg
+    - assets/images/interset/Research_and_Analytics_category.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
