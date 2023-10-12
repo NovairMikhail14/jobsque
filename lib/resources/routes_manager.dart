@@ -47,6 +47,7 @@ import '../presentation/pages_profile/profile/experience_view.dart';
 import '../presentation/pages_profile/profile/profile_view.dart';
 import '../presentation/pages_startup/onboarding/view/onboarding_view.dart';
 import '../presentation/pages_startup/spashcreen/view/splash_view.dart';
+import '../presentation/save_notification/saved_job_view.dart';
 
 class Routes {
   static const String splashRoute = "/";
@@ -96,6 +97,8 @@ class Routes {
   static const String AppliedJobViewRoute = "AppliedJobView";
   static const String ResetPasswordView = "ResetPasswordView";
   static const String HomeScreenFilter = "HomeScreenFilter";
+  static const String SaveJobViewRoute = "SaveJobView";
+
 
 // static const String Route = "No";
 }
@@ -103,6 +106,10 @@ class Routes {
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.SaveJobViewRoute:
+        return MaterialPageRoute(
+          builder: (context) =>  SaveJobView(),
+        );
       case Routes.ResetPasswordView:
         return MaterialPageRoute(
           builder: (context) => const ResetPasswordView(),

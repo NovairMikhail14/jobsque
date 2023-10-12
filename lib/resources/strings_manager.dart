@@ -1,6 +1,7 @@
 class AppStrings {
   static const String noRouteFound = "no Rout Found";
   static const String skip = "Skip";
+  static const String saved = "savrd";
 
   // On-boarding Pages
   static const String onBoardingTitle1_1 = "Find a job, and ";

@@ -11,6 +11,7 @@ import 'package:jobsque/resources/routes_manager.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../../widgets/main bottom_navigation.dart';
 import '../general/editprofile/editprofile_view.dart';
 import '../general/language/language_view.dart';
 import '../general/loginsecurity/loginsecurity_view.dart';
@@ -284,22 +285,7 @@ class ProfileView extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(Icons.home), label: AppStrings.bottomBarHome),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.message_outlined),
-                label: AppStrings.bottomBarMessages),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag_outlined),
-                label: AppStrings.applied),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.archive_outlined), label: AppStrings.facebook),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline), label: AppStrings.profile),
-          ],
-        ),
+        bottomNavigationBar: MainBottomNavigationBar(index: 4)
       );
     } else{
       return CustomLoadingIndicator();

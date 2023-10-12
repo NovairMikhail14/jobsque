@@ -6,8 +6,9 @@ import 'package:jobsque/resources/value_manager.dart';
 class MainSwitchTile extends StatefulWidget {
   String text;
   bool border;
-
-  MainSwitchTile({required this.text, required this.border, Key? key})
+  bool switchVar;
+  Function(bool)? onChanged;
+  MainSwitchTile({required this.text, required this.border,required this.onChanged,required this.switchVar, Key? key})
       : super(key: key);
 
   @override
@@ -15,7 +16,6 @@ class MainSwitchTile extends StatefulWidget {
 }
 
 class _MainSwitchTileState extends State<MainSwitchTile> {
-  bool switchVar = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +52,8 @@ class _MainSwitchTileState extends State<MainSwitchTile> {
           ),
           CupertinoSwitch(
             activeColor: ColorManager.primary500,
-            value: switchVar,
-            onChanged: (bool? value) {
-              setState(() {
-                switchVar = value!;
-              });
-            },
+            value: widget.switchVar,
+            onChanged: widget.onChanged
           )
         ],
       ),

@@ -9,6 +9,8 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../widgets/main bottom_navigation.dart';
+
 class AppliedJobView extends StatefulWidget {
   const AppliedJobView({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class _AppliedJobViewState extends State<AppliedJobView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: MainBottomNavigationBar(index: 2),
         appBar: AppBar(
           backgroundColor: ColorManager.general,
           title: const Text(AppStrings.appliedJob),

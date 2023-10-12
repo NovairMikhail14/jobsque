@@ -9,6 +9,7 @@ import '../../../domain/model/job_model.dart';
 import '../../pages_profile/cubit/getAllPortofolios_cubit/get_all_portofolios_cubit.dart';
 import '../../widgets/job_description.dart';
 import '../../widgets/job_tile.dart';
+import '../../widgets/main bottom_navigation.dart';
 import '../../widgets/search_bar.dart';
 import '../../widgets/title_list_bar.dart';
 import '../cubit/getAllJob_cubit/get_all_job_cubit.dart';
@@ -29,106 +30,104 @@ class HomeScreenView extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-            appBar: AppBar(
-              title: Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, Routes.profileRoute);
-                    },
-                    child: MainTitleBlock(
+        return SafeArea(
+          child: Scaffold(
+              bottomNavigationBar: MainBottomNavigationBar(index: 0),
+              appBar: AppBar(
+                title: Column(
+                  children: [
+                    MainTitleBlock(
                       title: "Name",
                       subtitle: "Create a better future for yourself here",
                     ),
-                  ),
-                  SearchBar(
-                      onChanged: (p0) {},
-                      onTap: () {
-                        Navigator.of(context)
-                            .pushNamed(Routes.HomeScreenSearchRoute);
-                      }),
-                ],
+                    SearchBar(
+                        onChanged: (p0) {},
+                        onTap: () {
+                          Navigator.of(context)
+                              .pushNamed(Routes.HomeScreenSearchRoute);
+                        }),
+                  ],
+                ),
+                toolbarHeight: AppSize.s125,
               ),
-              toolbarHeight: AppSize.s125,
-            ),
-            body: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Column(
-                    children: [
-                      TitleListBar(
-                          title: AppStrings.jobSuggested, onPressed: () {}),
-                      Container(
-                        height: 220,
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: jobList.length,
-                          itemBuilder: (context, index) {
-                            return Padding(
-                                padding: EdgeInsets.all(8),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                        context, Routes.JobDescriptionViewRoute,
-                                        arguments: ScreenArguments(
-                                            jobList[index].id.toString()));
-                                  },
-                                  child: JobSuggestItem(
-                                    title: jobList[index].name,
-                                    subtitle: jobList[index].jobType,
-                                    imagePath: jobList[index].image,
-                                    salary: int.parse(jobList[index].salary),
-                                    descriptionList: [
-                                      jobList[index].jobTimeType,
-                                      jobList[index].jobType,
-                                    ],
-                                  ),
-                                ));
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: TitleListBar(
-                      title: AppStrings.jobRecent, onPressed: () {}),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    width: MediaQuery.of(context).size.width,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: jobList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.all(8),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pushNamed(
-                                  Routes.JobDescriptionViewRoute,
-                                  arguments: {"jobId": jobList[index].id});
+              body: CustomScrollView(
+                physics: const BouncingScrollPhysics(),
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        TitleListBar(
+                            title: AppStrings.jobSuggested, onPressed: () {}),
+                        Container(
+                          height: 220,
+                          child: ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: jobList.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                          context, Routes.JobDescriptionViewRoute,
+                                          arguments: ScreenArguments(
+                                              jobList[index].id.toString()));
+                                    },
+                                    child: JobSuggestItem(
+                                      title: jobList[index].name,
+                                      subtitle: jobList[index].jobType,
+                                      imagePath: jobList[index].image,
+                                      salary: int.parse(jobList[index].salary),
+                                      descriptionList: [
+                                        jobList[index].jobTimeType,
+                                        jobList[index].jobType,
+                                      ],
+                                    ),
+                                  ));
                             },
-                            child: JobRecentItem(
-                              title: jobList[index].name,
-                              subtitle: jobList[index].jobType,
-                              imagePath: jobList[index].image,
-                              salary: int.parse(jobList[index].salary),
-                              descriptionList: [
-                                jobList[index].jobTimeType,
-                                jobList[index].jobType,
-                              ],
-                            ),
-                          )),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ));
+                  SliverToBoxAdapter(
+                    child: TitleListBar(
+                        title: AppStrings.jobRecent, onPressed: () {}),
+                  ),
+                  SliverToBoxAdapter(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: jobList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => Padding(
+                            padding: EdgeInsets.all(8),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                    Routes.JobDescriptionViewRoute,
+                                    arguments: {"jobId": jobList[index].id});
+                              },
+                              child: JobRecentItem(
+                                title: jobList[index].name,
+                                subtitle: jobList[index].jobType,
+                                imagePath: jobList[index].image,
+                                salary: int.parse(jobList[index].salary),
+                                descriptionList: [
+                                  jobList[index].jobTimeType,
+                                  jobList[index].jobType,
+                                ],
+                              ),
+                            )),
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+        );
       },
     );
   }

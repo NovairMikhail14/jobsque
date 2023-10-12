@@ -5,6 +5,9 @@ import 'package:jobsque/resources/color_manger.dart';
 import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 
+import '../../../../app/app_pref.dart';
+import '../../../../app/di.dart';
+
 class TwoStepValidationView extends StatefulWidget {
   const TwoStepValidationView({super.key});
 
@@ -13,6 +16,14 @@ class TwoStepValidationView extends StatefulWidget {
 }
 
 class _TwoStepValidationViewState extends State<TwoStepValidationView> {
+  final AppPreferences _shearedPref = instance<AppPreferences>();
+  bool? lsAccAccVerificationToggle;
+  @override
+  void initState() {
+    lsAccAccVerificationToggle=  _shearedPref.getlsAccAccVerificationToggle();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +35,19 @@ class _TwoStepValidationViewState extends State<TwoStepValidationView> {
         padding: EdgeInsets.all(AppPadding.p12),
         child: Column(
           children: [
-            MainSwitchTile(border: true,text: AppStrings.lsAccAccVerificationToggle),
-            SizedBox(height: AppSize.s12,),
+            MainSwitchTile(
+                border: true,
+                text: AppStrings.lsAccAccVerificationToggle,
+                onChanged: (p0) async {
+                  setState(() {
+                    lsAccAccVerificationToggle = p0;
+                  });
+                   _shearedPref.setlsAccAccVerificationToggle(lsAccAccVerificationToggle!);
+                },
+                switchVar: lsAccAccVerificationToggle!),
+            SizedBox(
+              height: AppSize.s12,
+            ),
             Row(
               children: [
                 CircleAvatar(
@@ -37,11 +59,16 @@ class _TwoStepValidationViewState extends State<TwoStepValidationView> {
                   width: AppSize.s20,
                 ),
                 Container(
-                  width: AppSize.s250,
-                    child: Text(AppStrings.lsAccAccVerificationMark1,maxLines: 3,))
+                    width: AppSize.s250,
+                    child: Text(
+                      AppStrings.lsAccAccVerificationMark1,
+                      maxLines: 3,
+                    ))
               ],
             ),
-            SizedBox(height: AppSize.s12,),
+            SizedBox(
+              height: AppSize.s12,
+            ),
             Row(
               children: [
                 CircleAvatar(
@@ -54,11 +81,16 @@ class _TwoStepValidationViewState extends State<TwoStepValidationView> {
                 ),
                 Container(
                     width: AppSize.s250,
-                    child: Text(AppStrings.lsAccAccVerificationMark2,maxLines: 3,))
+                    child: Text(
+                      AppStrings.lsAccAccVerificationMark2,
+                      maxLines: 3,
+                    ))
               ],
             ),
-            Spacer(flex: 1,),
-            MainButton(text: AppStrings.btnNext, onPress: (){})
+            Spacer(
+              flex: 1,
+            ),
+            MainButton(text: AppStrings.btnNext, onPress: () {})
           ],
         ),
       ),

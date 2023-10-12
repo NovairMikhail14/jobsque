@@ -22,7 +22,7 @@ class _LanguageViewState extends State<LanguageView> {
             ),
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p14),
-          child: const LanguageRadioTile()
+          child:  LanguageRadioTile()
         )
     );
   }
