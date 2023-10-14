@@ -128,3 +128,9 @@ class ShowAllFavoriteResponse extends BaseResponse {
   factory ShowAllFavoriteResponse.fromJson(Map<String,dynamic> json) => _$ShowAllFavoriteResponseFromJson(json);
   Map<String,dynamic> toJson() => _$ShowAllFavoriteResponseToJson(this);
 }
+@JsonSerializable()
+class deleteFavoriteResponse extends BaseResponse {
+  deleteFavoriteResponse();
+  factory deleteFavoriteResponse.fromJson(Map<String,dynamic> json) => _$deleteFavoriteResponseFromJson(json);
+  Map<String,dynamic> toJson() => _$deleteFavoriteResponseToJson(this);
+}

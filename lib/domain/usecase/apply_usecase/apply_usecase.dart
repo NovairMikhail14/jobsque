@@ -11,29 +11,15 @@ import '../../model/apply_model.dart';
 class ApplyUseCaseInput {
   String token;
   String name;
-  String end;
+  String cvFile;
+  String email;
   String mobile;
-  String workType;
   String otherFile;
   String jobsId;
   String userId;
-  String reviewed;
-  String updatedAt;
-  String createdAt;
-  String id;
-  ApplyUseCaseInput(
-      this.token,
-      this.otherFile,
-      this.createdAt,
-      this.end,
-      this.id,
-      this.jobsId,
-      this.mobile,
-      this.userId,
-      this.name,
-      this.reviewed,
-      this.updatedAt,
-      this.workType);
+
+  ApplyUseCaseInput(this.token, this.name, this.cvFile, this.email, this.mobile,
+      this.otherFile, this.jobsId, this.userId);
 }
 
 class ApplyUseCase
@@ -43,5 +29,5 @@ class ApplyUseCase
 
   @override
   Future<Either<Failure, Apply>> execute(ApplyUseCaseInput input) {
-    return repository.apply(ApplyRequest(input.token, input.otherFile, input.createdAt, input.end, input.id, input.jobsId, input.mobile, input.userId, input.name, input.reviewed, input.updatedAt, input.workType));
+    return repository.apply(ApplyRequest(input.token, input.name, input.cvFile, input.email, input.mobile, input.otherFile, input.jobsId, input.userId));
   }}

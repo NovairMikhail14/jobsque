@@ -73,7 +73,7 @@ class EditPortfolioRequest {
 }
 
 class DeletePortofoliosRequest {
-  int id;
+  String id;
   String token;
   DeletePortofoliosRequest(this.token, this.id);
 }
@@ -81,9 +81,12 @@ class DeletePortofoliosRequest {
 // favorites
 class ShowAllFavoriteRequest {
   String token;
-  String userId;
-  String jobId;
-  ShowAllFavoriteRequest(this.token, this.jobId, this.userId);
+  ShowAllFavoriteRequest(this.token,);
+}
+class DeleteFavoriteRequest {
+  String token;
+  String id;
+  DeleteFavoriteRequest(this.token,this.id);
 }
 
 class AddFavoriteRequest {
@@ -144,29 +147,15 @@ class EndExperienceRequest {
 class ApplyRequest {
   String token;
   String name;
-  String end;
+  String cvFile;
+  String email;
   String mobile;
-  String workType;
   String otherFile;
   String jobsId;
   String userId;
-  String reviewed;
-  String updatedAt;
-  String createdAt;
-  String id;
-  ApplyRequest(
-      this.token,
-      this.otherFile,
-      this.createdAt,
-      this.end,
-      this.id,
-      this.jobsId,
-      this.mobile,
-      this.userId,
-      this.name,
-      this.reviewed,
-      this.updatedAt,
-      this.workType);
+
+  ApplyRequest(this.token, this.name, this.cvFile, this.email, this.mobile,
+      this.otherFile, this.jobsId, this.userId);
 }
 
 class ShowApplyRequest {

@@ -305,7 +305,10 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<DeletePortfolioResponse> deletePortofolios(String token) async {
+  Future<DeletePortfolioResponse> deletePortofolios(
+    String token,
+    String idPortofolio,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
@@ -319,7 +322,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/user/profile/portofolios',
+              '/user/profile/portofolios/${idPortofolio}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -368,19 +371,12 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ShowAllFavoriteResponse> showAllFavorite(
-    String token,
-    String userId,
-    String jobId,
-  ) async {
+  Future<ShowAllFavoriteResponse> showAllFavorite(String token) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
-    final _data = {
-      'user_id': userId,
-      'job_id': jobId,
-    };
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ShowAllFavoriteResponse>(Options(
       method: 'GET',
@@ -399,6 +395,37 @@ class _AppServiceClient implements AppServiceClient {
               baseUrl,
             ))));
     final value = ShowAllFavoriteResponse.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<deleteFavoriteResponse> deleteFavorite(
+    String token,
+    String idJob,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    final Map<String, dynamic>? _data = null;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<deleteFavoriteResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/favorites/${idJob}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = deleteFavoriteResponse.fromJson(_result.data!);
     return value;
   }
 

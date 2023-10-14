@@ -39,7 +39,8 @@ abstract class Repository {
 
   Future<Either<Failure, ShowAllFavorite>> showAllFavorite(
       ShowAllFavoriteRequest showAllFavoriteRequest);
-
+  Future<Either<Failure, DeleteFavorite>> deleteFavorite(
+      DeleteFavoriteRequest deleteFavoriteRequest);
   // education
   Future<Either<Failure, ShowAllEducation>> showEducation(
       ShowAllEducationRequest showallEducationRequest);

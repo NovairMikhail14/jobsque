@@ -47,6 +47,9 @@ abstract class RemoteDataSource {
   Future<ShowAllFavoriteResponse> showAllFavorite(
       ShowAllFavoriteRequest showAllFavoriteRequest);
 
+  Future<deleteFavoriteResponse> deleteFavorite(
+      DeleteFavoriteRequest deleteFavoriteRequest);
+
   // education
   Future<ShowAllEducationResponse> showEducation(
       ShowAllEducationRequest showEducationRequest);
@@ -198,7 +201,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<DeletePortfolioResponse> deletePortofolios(
       DeletePortofoliosRequest deletePortofoliosRequest) async {
     return await appServiceClient.deletePortofolios(
-      "Bearer ${deletePortofoliosRequest.token}",
+      "Bearer ${deletePortofoliosRequest.token}",deletePortofoliosRequest.id
     );
   }
 
@@ -279,9 +282,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<ShowAllFavoriteResponse> showAllFavorite(
       ShowAllFavoriteRequest showAllFavoriteRequest) async {
     return await appServiceClient.showAllFavorite(
-        "Bearer ${showAllFavoriteRequest.token}",
-        showAllFavoriteRequest.userId,
-        showAllFavoriteRequest.jobId);
+        "Bearer ${showAllFavoriteRequest.token}",);
   }
 
   @override
@@ -326,5 +327,10 @@ class RemoteDataSourceImp implements RemoteDataSource {
   Future<JobIDResponse> jobID(JobIDRequest jobIDRequest) async {
     return await appServiceClient.jobID(
         "Bearer ${jobIDRequest.token}", jobIDRequest.jobId);
+  }
+
+  @override
+  Future<deleteFavoriteResponse> deleteFavorite(DeleteFavoriteRequest deleteFavoriteRequest) async{
+   return await appServiceClient.deleteFavorite(deleteFavoriteRequest.token, deleteFavoriteRequest.id);
   }
 }

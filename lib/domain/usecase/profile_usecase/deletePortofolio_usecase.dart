@@ -7,7 +7,7 @@ import 'package:jobsque/domain/repository/repository.dart';
 
 import '../../model/profile_model.dart';
 class DeletePortofoliosUseCaseInput {
-  int id;
+  String id;
   String token;
   DeletePortofoliosUseCaseInput(this.token, this.id);
 }

@@ -9,9 +9,7 @@ import '../../model/favorite_model.dart';
 
 class ShowAllFavoriteUseCaseInput {
   String token;
-  String userId;
-  String jobId;
-  ShowAllFavoriteUseCaseInput(this.token, this.jobId, this.userId);
+  ShowAllFavoriteUseCaseInput(this.token);
 }
 class ShowAllFavoriteUseCase
     extends BaseUsecase<ShowAllFavoriteUseCaseInput,ShowAllFavorite> {
@@ -20,5 +18,5 @@ ShowAllFavoriteUseCase(this.repository);
 
   @override
   Future<Either<Failure, ShowAllFavorite>> execute(ShowAllFavoriteUseCaseInput input) {
-    return repository.showAllFavorite(ShowAllFavoriteRequest(input.token, input.jobId, input.userId));
+    return repository.showAllFavorite(ShowAllFavoriteRequest(input.token));
   }}

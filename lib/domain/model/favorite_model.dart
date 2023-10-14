@@ -72,3 +72,6 @@ class ShowAllFavorite {
   List<Job> jobList;
   ShowAllFavorite(this.jobList);
 }
+class DeleteFavorite {
+ DeleteFavorite();
+}

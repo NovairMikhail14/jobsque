@@ -70,3 +70,9 @@ extension ShowAllFavoriteResponseMapper on ShowAllFavoriteResponse? {
     return ShowAllFavorite(this?.jobListResponse.toDomain()??[]);
   }
 }
+
+extension DeleteFavoriteResponseMapper on deleteFavoriteResponse? {
+  DeleteFavorite toDomain() {
+    return DeleteFavorite();
+  }
+}

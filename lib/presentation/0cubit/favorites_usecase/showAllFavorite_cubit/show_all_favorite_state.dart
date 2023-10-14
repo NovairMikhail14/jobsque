@@ -4,3 +4,12 @@ part of 'show_all_favorite_cubit.dart';
 abstract class ShowAllFavoriteState {}
 
 class ShowAllFavoriteInitial extends ShowAllFavoriteState {}
+
+class ShowAllFavoriteLoading extends ShowAllFavoriteState {}
+
+class ShowAllFavoriteSucess extends ShowAllFavoriteState {
+List<Job> listJob;
+  ShowAllFavoriteSucess(this.listJob,);
+}
+
+class ShowAllFavoriteFailed extends ShowAllFavoriteState {}

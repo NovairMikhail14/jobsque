@@ -9,4 +9,9 @@ class ShowApplyCubit extends Cubit<ShowApplyState> {
   ShowApplyCubit(this.showApplyUseCase) : super(ShowApplyInitial());
   final AppPreferences _shearedPref = instance<AppPreferences>();
   ShowApplyUseCase showApplyUseCase;
+
+  fetAllApplied() async{
+    final token = await _shearedPref.getAppToken();
+    (await showApplyUseCase.execute(ShowApplyUseCaseInput(token!))).fold((l) => null, (r) => null);
+}
 }

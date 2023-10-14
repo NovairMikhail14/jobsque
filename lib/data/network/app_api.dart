@@ -73,10 +73,10 @@ abstract class AppServiceClient {
   Future<GetPortfoliosResponse> getAllPortofolios(
       @Header('Authorization') String token);
 
-  @DELETE("/user/profile/portofolios")
+  @DELETE("/user/profile/portofolios/{idPortofolio}")
   Future<DeletePortfolioResponse> deletePortofolios(
-
-  @Header('Authorization') String token);
+  @Header('Authorization') String token,@Path() String idPortofolio
+      );
 
 //   @PUT("/user/profile/update/")
 //   Future<UpdateProfileResponse> updateProfile( @Header('Authorization') String token);
@@ -102,10 +102,12 @@ abstract class AppServiceClient {
   @GET("/favorites/")
   Future<ShowAllFavoriteResponse> showAllFavorite(
     @Header('Authorization') String token,
-    @Field("user_id") String userId,
-    @Field("job_id") String jobId,
   );
-
+  @GET("/favorites/{idJob}")
+  Future<deleteFavoriteResponse> deleteFavorite(
+      @Header('Authorization') String token,
+      @Path() String idJob
+      );
   // education
   @GET("/education/")
   Future<ShowAllEducationResponse> showEducation(

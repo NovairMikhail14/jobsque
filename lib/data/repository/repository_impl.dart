@@ -669,4 +669,27 @@ class RepositoryImpl extends Repository {
           ResponseMessage.NO_INTERNET_CONNECTON));
     }
   }
+
+  @override
+  Future<Either<Failure, DeleteFavorite>> deleteFavorite(DeleteFavoriteRequest deleteFavoriteRequest) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final response =
+            await remoteDataSource.deleteFavorite(deleteFavoriteRequest);
+        if (response.status == ApiInternalStatus.success) {
+          // Success
+          return Right(response.toDomain());
+        } else {
+          return left(Failure(ResponseCode.DEFAULT, ResponseMessage.DEFAULT));
+        }
+      } catch (error) {
+        return Left(ErrorHandler.handle(error).failure);
+      }
+      // safe to call api
+    } else {
+      // return internet connection failure
+      return left(Failure(ResponseCode.NO_INTERNET_CONNECTON,
+          ResponseMessage.NO_INTERNET_CONNECTON));
+    }
+  }
 }

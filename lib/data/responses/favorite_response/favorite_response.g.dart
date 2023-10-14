@@ -136,3 +136,16 @@ Map<String, dynamic> _$ShowAllFavoriteResponseToJson(
       'message': instance.message,
       'data': instance.jobListResponse,
     };
+
+deleteFavoriteResponse _$deleteFavoriteResponseFromJson(
+        Map<String, dynamic> json) =>
+    deleteFavoriteResponse()
+      ..status = json['status'] as bool?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$deleteFavoriteResponseToJson(
+        deleteFavoriteResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+    };
