@@ -12,12 +12,21 @@ import '../../widgets/job_tile.dart';
 import '../../widgets/main bottom_navigation.dart';
 import '../../widgets/search_bar.dart';
 import '../../widgets/title_list_bar.dart';
+import '../cubit/addFavorite_cubit/add_favorite_cubit.dart';
 import '../cubit/getAllJob_cubit/get_all_job_cubit.dart';
 import '../job_detail/job_detail_view.dart';
 
-class HomeScreenView extends StatelessWidget {
+class HomeScreenView extends StatefulWidget {
   HomeScreenView({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreenView> createState() => _HomeScreenViewState();
+}
+
+class _HomeScreenViewState extends State<HomeScreenView> {
   bool switchVar = true;
+
+  final  _isSelected = Map();
 
   @override
   Widget build(BuildContext context) {
@@ -65,20 +74,34 @@ class HomeScreenView extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             itemCount: jobList.length,
                             itemBuilder: (context, index) {
+                              if (!_isSelected.containsKey(index)) // important
+                                _isSelected[index] = false;
+
                               return Padding(
                                   padding: EdgeInsets.all(8),
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.pushNamed(
-                                          context, Routes.JobDescriptionViewRoute,
+                                      Navigator.pushNamed(context,
+                                          Routes.JobDescriptionViewRoute,
                                           arguments: ScreenArguments(
                                               jobList[index].id.toString()));
                                     },
                                     child: JobSuggestItem(
+                                      onPressed:
+                                          () {
+                                        if (_isSelected[index] = true) {
+                                          BlocProvider.of<AddFavoriteCubit>(context)
+                                              .addFavorite(jobList[index].id.toString());
+                                        }
+                                        setState(() {
+                                          _isSelected[index] = !_isSelected[index];
+                                        });
+                                      },
                                       title: jobList[index].name,
                                       subtitle: jobList[index].jobType,
                                       imagePath: jobList[index].image,
                                       salary: int.parse(jobList[index].salary),
+                                      jobId: jobList[index].id,
                                       descriptionList: [
                                         jobList[index].jobTimeType,
                                         jobList[index].jobType,
@@ -116,6 +139,7 @@ class HomeScreenView extends StatelessWidget {
                                 subtitle: jobList[index].jobType,
                                 imagePath: jobList[index].image,
                                 salary: int.parse(jobList[index].salary),
+                                jobId: jobList[index].id,
                                 descriptionList: [
                                   jobList[index].jobTimeType,
                                   jobList[index].jobType,
@@ -133,13 +157,16 @@ class HomeScreenView extends StatelessWidget {
   }
 }
 
-class JobSuggestItem extends StatelessWidget {
+class JobSuggestItem extends StatefulWidget {
   JobSuggestItem({
     required this.descriptionList,
     required this.imagePath,
     required this.subtitle,
+    this.jobId,
     required this.salary,
     required this.title,
+    this.isSelected = false,
+    this.onPressed
   });
 
   String imagePath;
@@ -147,7 +174,15 @@ class JobSuggestItem extends StatelessWidget {
   String title;
   List descriptionList;
   int salary;
+  int? jobId;
+  bool isSelected;
+  Function()? onPressed;
 
+@override
+  State<JobSuggestItem> createState() => _JobSuggestItemState();
+}
+
+class _JobSuggestItemState extends State<JobSuggestItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -163,21 +198,25 @@ class JobSuggestItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             JobTile(
-              imagePath: imagePath,
-              subtitle: subtitle,
-              title: title,
+              imagePath: widget.imagePath,
+              subtitle: widget.subtitle,
+              title: widget.title,
               isDark: true,
+              isSelected: widget.isSelected,
+              onPressed:widget.onPressed,
+
+
             ),
             JobDescription(
               isDark: true,
-              descriptionList: descriptionList,
+              descriptionList: widget.descriptionList,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
-                    Text("${(salary / 1000).toString().split(".")[0]}K",
+                    Text("${(widget.salary / 1000).toString().split(".")[0]}K",
                         style: Theme.of(context)
                             .textTheme
                             .titleLarge!
@@ -208,21 +247,31 @@ class JobSuggestItem extends StatelessWidget {
   }
 }
 
-class JobRecentItem extends StatelessWidget {
-  JobRecentItem({
-    required this.descriptionList,
-    required this.imagePath,
-    required this.subtitle,
-    required this.salary,
-    required this.title,
-  });
+class JobRecentItem extends StatefulWidget {
+  JobRecentItem(
+      {required this.descriptionList,
+      required this.imagePath,
+      required this.subtitle,
+      required this.salary,
+      required this.title,
+        this.onPressed,
+      this.jobId,
+      this.isSelected = false});
 
   String imagePath;
   String subtitle;
   String title;
   List descriptionList;
   int salary;
+  int? jobId;
+  bool isSelected;
+  Function()? onPressed;
 
+  @override
+  State<JobRecentItem> createState() => _JobRecentItemState();
+}
+
+class _JobRecentItemState extends State<JobRecentItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -234,13 +283,14 @@ class JobRecentItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             JobTile(
-              imagePath: imagePath,
-              subtitle: subtitle,
-              title: title,
+              imagePath: widget.imagePath,
+              subtitle: widget.subtitle,
+              title: widget.title,
+              onPressed:widget.onPressed,
             ),
             JobDescription(
-              descriptionList: descriptionList,
-              salary: salary,
+              descriptionList: widget.descriptionList,
+              salary: widget.salary,
             )
           ]),
     );

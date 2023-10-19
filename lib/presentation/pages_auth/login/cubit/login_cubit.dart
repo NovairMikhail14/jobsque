@@ -19,6 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
         return l.message;
       }, (r) async {
         await _shearedPref.setAppToken(r.token);
+        await _shearedPref.setUserID(r.user!.id.toString());
         await _shearedPref.setAppLoggedIn();
         emit(LoginSuccess());
         return r;

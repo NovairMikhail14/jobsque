@@ -137,10 +137,6 @@ class CreateAccountView extends StatelessWidget {
                               if (formKey.currentState!.validate()) {
                                 (BlocProvider.of<RegisterCubit>(context)
                                     .register(email!, password!, name!));
-                                print(
-                                    "-C-->${BlocProvider.of<RegisterCubit>(context).massageEmail.toString()}");
-                                print(
-                                    "-C-->${BlocProvider.of<RegisterCubit>(context).massagePassword.toString()}");
                               }
                             }
                             ),

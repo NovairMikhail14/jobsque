@@ -16,15 +16,15 @@ class ChatResponse {
   @JsonKey(name: "massage")
   String? massage;
   @JsonKey(name: "user_id")
-  String? userId;
+  int? userId;
   @JsonKey(name: "comp_id")
-  String? compId;
+  int? compId;
   @JsonKey(name: "sender_user")
   String? senderUser;
   @JsonKey(name: "created_at")
-  DateTime? createdAt;
+  String? createdAt;
   @JsonKey(name: "updated_at")
-  DateTime? updatedAt;
+  String? updatedAt;
   @JsonKey(name: "id")
   int? id;
   ChatResponse(

@@ -5,11 +5,12 @@ class ApplyData {
   String mobile;
   String workType;
   String otherFile;
-  String jobsId;
-  String userId;
-  bool reviewed;
-  DateTime updatedAt;
-  DateTime createdAt;
+  int jobsId;
+  int userId;
+  int reviewed;
+  String accepted;
+  String updatedAt;
+  String createdAt;
   int id;
 
   ApplyData(
@@ -22,6 +23,7 @@ class ApplyData {
     this.jobsId,
     this.userId,
     this.reviewed,
+    this.accepted,
     this.updatedAt,
     this.createdAt,
     this.id,

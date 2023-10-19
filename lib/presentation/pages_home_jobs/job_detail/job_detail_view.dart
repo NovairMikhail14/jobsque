@@ -24,11 +24,7 @@ import '../home_screen/home_screen_view.dart';
 import 'job_company.dart';
 import 'job_description.dart';
 
-class ScreenArguments {
-  final String id;
 
-  ScreenArguments(this.id);
-}
 
 class JobDetailView extends StatefulWidget {
   final String id;

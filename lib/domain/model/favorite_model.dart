@@ -41,20 +41,29 @@ class Job {
 }
 
 class User {
-  bool like;
+
+  int id;
+  int userId;
+  int like;
+  int jobId;
   String imageJob;
   String userName;
   String location;
-  int userId;
-  String jobId;
+  DateTime createdAt;
+  DateTime updatedAt;
+  Job? job;
+
   User(
-    this.like,
-    this.imageJob,
-    this.userName,
-    this.location,
-    this.userId,
-    this.jobId,
-  );
+      this.id,
+      this.userId,
+      this.like,
+      this.jobId,
+      this.imageJob,
+      this.userName,
+      this.location,
+      this.createdAt,
+      this.updatedAt,
+      this.job);
 }
 
 class Data {
@@ -69,7 +78,7 @@ class AddFavorite {
 }
 
 class ShowAllFavorite {
-  List<Job> jobList;
+  List<User> jobList;
   ShowAllFavorite(this.jobList);
 }
 class DeleteFavorite {

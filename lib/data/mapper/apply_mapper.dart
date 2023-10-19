@@ -14,11 +14,12 @@ extension ApplyDataResponseMapper on ApplyDataResponse? {
       this?.mobile.orEmpty() ?? Constants.empty,
       this?.workType.orEmpty() ?? Constants.empty,
       this?.otherFile.orEmpty() ?? Constants.empty,
-      this?.jobsId.orEmpty() ?? Constants.empty,
-      this?.userId.orEmpty() ?? Constants.empty,
-      this?.reviewed ?? false,
-      this?.updatedAt.orDefultDate() ?? Constants.defultDate,
-      this?.createdAt.orDefultDate() ?? Constants.defultDate,
+      this?.jobsId.orZero() ?? Constants.zero,
+      this?.userId.orZero() ?? Constants.zero,
+      this?.reviewed.orZero() ?? Constants.zero,
+      this?.accept.orEmpty() ?? Constants.empty,
+      this?.updatedAt.orEmpty() ?? Constants.empty,
+      this?.createdAt.orEmpty() ?? Constants.empty,
       this?.id.orZero() ?? Constants.zero,
     );
   }

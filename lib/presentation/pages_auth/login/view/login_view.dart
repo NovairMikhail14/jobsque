@@ -11,7 +11,7 @@ import 'package:jobsque/resources/strings_manager.dart';
 import 'package:jobsque/resources/value_manager.dart';
 import '../../../widgets/app_bar.dart';
 import '../../create_account/create_account_view.dart';
-import '../../reset_password/reset_password_view.dart';
+import '../../forget_password/reset_password_view.dart';
 import '../cubit/login_cubit.dart';
 
 
@@ -58,7 +58,7 @@ class LoginView extends StatelessWidget {
                         password = data ;
                       },
                       icon: Icons.lock_outline,
-                      obscureText: true,
+                      isPassword: true,
                       hintText: AppStrings.password,
                     ),
                     Row(
@@ -116,11 +116,9 @@ class LoginView extends StatelessWidget {
                       ],
                     ),
                     MainButton(text: AppStrings.loginTitle, onPress: () {
-                      print("email");
                       if(formKey.currentState!.validate()){
                         BlocProvider.of<LoginCubit>(context).login(email!,password!);
-                        print(email);
-                      }  print("No email");
+                      }
 
                     }),
                     Stack(

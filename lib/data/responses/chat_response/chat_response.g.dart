@@ -18,15 +18,11 @@ Map<String, dynamic> _$BaseResponseToJson(BaseResponse instance) =>
 
 ChatResponse _$ChatResponseFromJson(Map<String, dynamic> json) => ChatResponse(
       json['massage'] as String?,
-      json['user_id'] as String?,
-      json['comp_id'] as String?,
+      json['user_id'] as int?,
+      json['comp_id'] as int?,
       json['sender_user'] as String?,
-      json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
-      json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      json['updated_at'] as String?,
+      json['created_at'] as String?,
       json['id'] as int?,
     );
 
@@ -36,8 +32,8 @@ Map<String, dynamic> _$ChatResponseToJson(ChatResponse instance) =>
       'user_id': instance.userId,
       'comp_id': instance.compId,
       'sender_user': instance.senderUser,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
       'id': instance.id,
     };
 

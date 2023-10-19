@@ -3,6 +3,7 @@ import 'package:jobsque/domain/usecase/company_usecase/getAllCompany_usecase.dar
 import 'package:meta/meta.dart';
 import '../../../../app/app_pref.dart';
 import '../../../../app/di.dart';
+import '../../../../domain/model/company_model.dart';
 part 'get_all_company_state.dart';
 
 class GetAllCompanyCubit extends Cubit<GetAllCompanyState> {
@@ -13,6 +14,11 @@ GetAllCompanyUseCase getAllCompanyUseCase;
   getAllCompany() async {
     String? token = await _shearedPref.getAppToken();
     print("getAllJobs-------->$token");
-    (await getAllCompanyUseCase.execute(GetAllCompanyUseCaseInput (token!))).fold((l) => l, (r) => r);
+    (await getAllCompanyUseCase.execute(GetAllCompanyUseCaseInput (token!))).fold((l) {
+      return l;
+    }, (r) {
+      emit(GetAllCompanySuccess(r.companyList));
+      return r.companyList;
+    });
   }
 }

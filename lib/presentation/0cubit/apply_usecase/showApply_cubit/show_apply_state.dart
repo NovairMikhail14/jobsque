@@ -5,5 +5,8 @@ abstract class ShowApplyState {}
 
 class ShowApplyInitial extends ShowApplyState {}
 class ShowApplyLoading extends ShowApplyState {}
-class  ShowApplySucess extends ShowApplyState {}
+class  ShowApplySuccess extends ShowApplyState {
+  List<ApplyData> listApplyJob;
+  ShowApplySuccess(this.listApplyJob);
+}
 class  ShowApplyFailed extends ShowApplyState {}

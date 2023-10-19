@@ -367,10 +367,11 @@ class RepositoryImpl extends Repository {
   Future<Either<Failure, GetAllCompany>> getAllCompany(
       GetAllCompanyRequest getAllCompanyRequest) async {
     if (await networkInfo.isConnected) {
+      print(await networkInfo.isConnected);
       try {
         final response =
         await remoteDataSource.getAllCompany(getAllCompanyRequest);
-        if (response.status == ApiInternalStatus.success) {
+        if (response.companyListResponce!=[]) {
           // Success
           return Right(response.toDomain());
         } else {

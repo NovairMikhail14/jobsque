@@ -1,13 +1,13 @@
 class Company {
   int id;
   String name;
-  dynamic image;
+  String image;
   String email;
   String website;
   String about;
   String location;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String createdAt;
+  String updatedAt;
 
   Company(
     this.id,

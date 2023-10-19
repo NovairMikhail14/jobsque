@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:jobsque/presentation/widgets/job_description.dart';
 import 'package:jobsque/presentation/widgets/job_steps.dart';
 import 'package:jobsque/resources/color_manger.dart';
@@ -11,10 +12,15 @@ class JobTile extends StatefulWidget {
   String subtitle;
   String imagePath;
   bool isDark;
-
+  FaIcon? icon;
+  Function()? onPressed;
+  bool isSelected;
   JobTile(
       {required this.title,
       this.isDark = false,
+        this.icon ,
+        this.onPressed,
+        this.isSelected = false,
       required this.subtitle,
       required this.imagePath});
 
@@ -23,7 +29,6 @@ class JobTile extends StatefulWidget {
 }
 
 class _JobTileState extends State<JobTile> {
-  bool Selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,54 +70,13 @@ class _JobTileState extends State<JobTile> {
           ],
         ),
         trailing: IconButton(
-            icon: Icon(Icons.bookmark_border_outlined),
+            icon:widget.icon ?? Icon(Icons.bookmark_border_outlined),
             selectedIcon: Icon(
               Icons.bookmark,
               color: ColorManager.primary900,
             ),
-            isSelected: Selected,
-            onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                isScrollControlled: true,
-                clipBehavior: Clip.antiAlias,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(AppSize.s20),
-                        topRight: Radius.circular(AppSize.s20))),
-                builder: (BuildContext context) {
-                  return Container(
-                      padding: EdgeInsets.all(AppPadding.p10),
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      decoration: BoxDecoration(
-                          color: ColorManager.general,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(AppSize.s20),
-                              topRight: Radius.circular(AppSize.s20))),
-                      child: Center(
-                          child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          OptionSaves(
-                            leadingIcon: Icon(Icons.print),
-                            title: "Apply Job",
-                          ),
-                          OptionSaves(
-                            leadingIcon: Icon(Icons.share_arrival_time),
-                            title: "Share via...",
-                          ),
-                          OptionSaves(
-                            leadingIcon: Icon(Icons.bookmark),
-                            title: "Cancel save",
-                          )
-                        ],
-                      )));
-                },
-              );
-              setState(() {
-                Selected = !Selected;
-              });
-            },
+            isSelected: widget.isSelected,
+            onPressed:widget.onPressed,
             color: widget.isDark ? ColorManager.general : null),
       ),
     );
@@ -120,15 +84,15 @@ class _JobTileState extends State<JobTile> {
 }
 
 class OptionSaves extends StatelessWidget {
-  OptionSaves({required this.leadingIcon, required this.title});
+  OptionSaves({required this.leadingIcon, required this.title,this.onPressed});
 
   Icon leadingIcon;
   String title;
-
+  Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: OutlinedButton.styleFrom(
             alignment: Alignment.centerLeft,
             fixedSize: Size(MediaQuery.of(context).size.width, AppSize.s40),

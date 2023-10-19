@@ -26,15 +26,17 @@ class ApplyDataResponse {
   @JsonKey(name: "other_file")
   String? otherFile;
   @JsonKey(name: "jobs_id")
-  String? jobsId;
+  int? jobsId;
   @JsonKey(name: "user_id")
-  String? userId;
+  int? userId;
   @JsonKey(name: "reviewed")
-  bool? reviewed;
+  int? reviewed;
+  @JsonKey(name: "accept")
+  String? accept;
   @JsonKey(name: "updated_at")
-  DateTime? updatedAt;
+  String? updatedAt;
   @JsonKey(name: "created_at")
-  DateTime? createdAt;
+  String? createdAt;
   @JsonKey(name: "id")
   int? id;
 
@@ -48,7 +50,8 @@ class ApplyDataResponse {
     this.jobsId,
     this.userId,
     this.reviewed,
-    this.updatedAt,
+      this.accept,
+      this.updatedAt,
     this.createdAt,
     this.id,
   );

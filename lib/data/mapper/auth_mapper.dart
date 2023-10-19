@@ -62,7 +62,7 @@ extension ProfileResponseMapper on ProfileDataViewResponse? {
 
 extension ForgetPasswordResponseMapper on ForgetPasswordResponse? {
   ForgetPassword toDomain() {
-    return ForgetPassword(this?.user.toDomain());
+    return ForgetPassword(this?.message.orEmpty() ?? Constants.empty,);
   }
 }
 

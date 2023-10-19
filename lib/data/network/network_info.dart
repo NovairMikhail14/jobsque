@@ -10,6 +10,9 @@ class NetworkInfoImpl implements NetworkInfo{
 
   @override
   // TODO: implement isConnected
-  Future<bool> get isConnected => internetConnectionChecker.hasConnection;
+  Future<bool> get isConnected async {
+          print("-----------${ await internetConnectionChecker.hasConnection}");
+    return internetConnectionChecker.hasConnection;
+  }
 
 }

@@ -24,15 +24,12 @@ ApplyDataResponse _$ApplyDataResponseFromJson(Map<String, dynamic> json) =>
       json['mobile'] as String?,
       json['work_type'] as String?,
       json['other_file'] as String?,
-      json['jobs_id'] as String?,
-      json['user_id'] as String?,
-      json['reviewed'] as bool?,
-      json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
-      json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
+      json['jobs_id'] as int?,
+      json['user_id'] as int?,
+      json['reviewed'] as int?,
+      json['accept'] as String?,
+      json['updated_at'] as String?,
+      json['created_at'] as String?,
       json['id'] as int?,
     );
 
@@ -47,8 +44,9 @@ Map<String, dynamic> _$ApplyDataResponseToJson(ApplyDataResponse instance) =>
       'jobs_id': instance.jobsId,
       'user_id': instance.userId,
       'reviewed': instance.reviewed,
-      'updated_at': instance.updatedAt?.toIso8601String(),
-      'created_at': instance.createdAt?.toIso8601String(),
+      'accept': instance.accept,
+      'updated_at': instance.updatedAt,
+      'created_at': instance.createdAt,
       'id': instance.id,
     };
 

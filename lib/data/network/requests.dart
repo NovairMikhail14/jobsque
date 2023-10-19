@@ -14,8 +14,9 @@ class LoginRequest {
 }
 
 class ForgetPasswordRequest {
+  String token;
   String email;
-  ForgetPasswordRequest(this.email);
+  ForgetPasswordRequest(this.token, this.email);
 }
 
 class RegisterRequest {
@@ -160,8 +161,9 @@ class ApplyRequest {
 
 class ShowApplyRequest {
   String token;
+  String userID;
   ShowApplyRequest(
-      this.token,
+      this.token,this.userID
       );
 }
 

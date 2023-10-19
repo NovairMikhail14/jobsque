@@ -12,11 +12,12 @@ class ForgetBPasswordUseCase
   @override
   Future<Either<Failure, ForgetPassword>> execute(
       ForgetPasswordUseCaseInput input) async {
-    return await repository.forgetPassword(ForgetPasswordRequest(input.email));
+    return await repository.forgetPassword(ForgetPasswordRequest(input.token, input.email));
   }
 }
 
 class ForgetPasswordUseCaseInput {
+  String token;
   String email;
-  ForgetPasswordUseCaseInput(this.email);
+  ForgetPasswordUseCaseInput(this.token, this.email);
 }

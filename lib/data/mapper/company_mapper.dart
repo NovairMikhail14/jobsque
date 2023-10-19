@@ -13,8 +13,8 @@ extension CompanyResponseMapper on CompanyResponse? {
       this?.website.orEmpty() ?? Constants.empty,
       this?.about.orEmpty() ?? Constants.empty,
       this?.location.orEmpty() ?? Constants.empty,
-      this?.createdAt.orDefultDate() ?? Constants.defultDate,
-      this?.updatedAt.orDefultDate() ?? Constants.defultDate,
+      this?.createdAt.orEmpty() ?? Constants.empty,
+      this?.updatedAt.orEmpty() ?? Constants.empty,
     );
   }
 }

@@ -8,8 +8,9 @@ import '../base_usecase.dart';
 
 class ShowApplyUseCaseInput {
   String token;
+  String userID;
   ShowApplyUseCaseInput(
-    this.token,
+    this.token,this.userID
   );
 }
 
@@ -19,6 +20,6 @@ class ShowApplyUseCase extends BaseUsecase<ShowApplyUseCaseInput, ShowApply> {
 
   @override
   Future<Either<Failure, ShowApply>> execute(ShowApplyUseCaseInput input) {
-    return repository.showApply(ShowApplyRequest(input.token));
+    return repository.showApply(ShowApplyRequest(input.token,input.userID));
   }
 }

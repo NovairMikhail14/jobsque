@@ -20,7 +20,9 @@ import '../presentation/pages_auth/create_account/create_account_view.dart';
 import '../presentation/pages_auth/create_account/interests_view.dart';
 import '../presentation/pages_auth/forget_password/forgot_password_view.dart';
 import '../presentation/pages_auth/login/view/login_view.dart';
-import '../presentation/pages_auth/reset_password/reset_password_view.dart';
+import '../presentation/pages_auth/forget_password/reset_password_view.dart';
+import '../presentation/pages_chats/chat_list_view.dart';
+import '../presentation/pages_chats/message_list_view.dart';
 import '../presentation/pages_home_jobs/home_screen/home_screen_filter.dart';
 import '../presentation/pages_home_jobs/home_screen/home_screen_search.dart';
 import '../presentation/pages_home_jobs/home_screen/home_screen_view.dart';
@@ -47,6 +49,7 @@ import '../presentation/pages_profile/profile/experience_view.dart';
 import '../presentation/pages_profile/profile/profile_view.dart';
 import '../presentation/pages_startup/onboarding/view/onboarding_view.dart';
 import '../presentation/pages_startup/spashcreen/view/splash_view.dart';
+import '../presentation/save_job/saved_jobs_view.dart';
 import '../presentation/save_notification/saved_job_view.dart';
 
 class Routes {
@@ -98,17 +101,32 @@ class Routes {
   static const String ResetPasswordView = "ResetPasswordView";
   static const String HomeScreenFilter = "HomeScreenFilter";
   static const String SaveJobViewRoute = "SaveJobView";
+  static const String MessagesListViewRoute  = "MessagesListView";
+  static const String ChatListViewRoute  = "ChatListView";
+
 
 
 // static const String Route = "No";
 }
-
+class ScreenArguments {
+  final String id;
+  ScreenArguments(this.id);
+}
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
+      case Routes.ChatListViewRoute:
+        final arg = settings.arguments as CompanyArg;
+        return MaterialPageRoute(
+          builder: (context) =>  ChatListView(arg.compId,arg.compName,arg.image),
+        );
+      case Routes.MessagesListViewRoute:
+        return MaterialPageRoute(
+          builder: (context) =>  MessagesListView(),
+        );
       case Routes.SaveJobViewRoute:
         return MaterialPageRoute(
-          builder: (context) =>  SaveJobView(),
+          builder: (context) =>  SavedJobsView(),
         );
       case Routes.ResetPasswordView:
         return MaterialPageRoute(

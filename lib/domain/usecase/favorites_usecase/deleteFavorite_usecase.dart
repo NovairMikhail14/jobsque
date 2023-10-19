@@ -17,6 +17,6 @@ Repository repository;
 DeleteFavoriteUseCase(this.repository);
 
   @override
-  Future<Either<Failure, DeleteFavorite>> execute(DeleteCaseInput input) {
+  Future<Either<Failure, DeleteFavorite>> execute(DeleteFavoriteCaseInput input) {
     return repository.deleteFavorite(DeleteFavoriteRequest(input.token, input.idJob));
   }}

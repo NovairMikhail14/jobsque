@@ -68,23 +68,37 @@ Map<String, dynamic> _$FavoriteJobResponseToJson(
 FavoriteUserResponse _$FavoriteUserResponseFromJson(
         Map<String, dynamic> json) =>
     FavoriteUserResponse(
-      json['like'] as bool,
-      json['image_job'] as String,
-      json['user_name'] as String,
-      json['location'] as String,
+      json['id'] as int,
       json['user_id'] as int,
-      json['job_id'] as String,
+      json['like'] as int,
+      json['job_id'] as int,
+      json['image'] as String,
+      json['name'] as String,
+      json['location'] as String,
+      json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
+      json['jobs'] == null
+          ? null
+          : FavoriteJobResponse.fromJson(json['jobs'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$FavoriteUserResponseToJson(
         FavoriteUserResponse instance) =>
     <String, dynamic>{
-      'like': instance.like,
-      'image_job': instance.imageJob,
-      'user_name': instance.userName,
-      'location': instance.location,
+      'id': instance.id,
       'user_id': instance.userId,
+      'like': instance.like,
       'job_id': instance.jobId,
+      'image': instance.imageJob,
+      'name': instance.userName,
+      'location': instance.location,
+      'created_at': instance.createdAt?.toIso8601String(),
+      'updated_at': instance.updatedAt?.toIso8601String(),
+      'jobs': instance.job,
     };
 
 DataResponse _$DataResponseFromJson(Map<String, dynamic> json) => DataResponse(
@@ -123,7 +137,7 @@ ShowAllFavoriteResponse _$ShowAllFavoriteResponseFromJson(
         Map<String, dynamic> json) =>
     ShowAllFavoriteResponse(
       (json['data'] as List<dynamic>?)
-          ?.map((e) => FavoriteJobResponse.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => FavoriteUserResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
     )
       ..status = json['status'] as bool?

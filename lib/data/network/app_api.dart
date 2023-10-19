@@ -34,6 +34,7 @@ abstract class AppServiceClient {
 
   @POST("/auth/otp/")
   Future<ForgetPasswordResponse> forgetPassword(
+  @Header('Authorization') String token,
     @Field("email") String email,
   );
 
@@ -92,7 +93,7 @@ abstract class AppServiceClient {
 //   Future<EditPortfolioResponse> editPortfolio( @Header('Authorization') String token);
 
 // favorites
-  @PUT("/favorites/")
+  @POST("/favorites/")
   Future<AddFavoriteResponse> addFavorite(
     @Header('Authorization') String token,
     @Field("user_id") String userId,
@@ -103,7 +104,7 @@ abstract class AppServiceClient {
   Future<ShowAllFavoriteResponse> showAllFavorite(
     @Header('Authorization') String token,
   );
-  @GET("/favorites/{idJob}")
+  @DELETE("/favorites/{idJob}")
   Future<deleteFavoriteResponse> deleteFavorite(
       @Header('Authorization') String token,
       @Path() String idJob
@@ -149,21 +150,18 @@ abstract class AppServiceClient {
   Future<ApplyResponse> apply(
     @Header('Authorization') String token,
     @Field("name") String name,
-    @Field("email") String end,
-    @Field("mobile") String mobile,
-    @Field("work_type") String workType,
+    @Field("email") String cvFile,
+    @Field("mobile") String email,
+    @Field("work_type") String mobile,
     @Field("other_file") String otherFile,
     @Field("jobs_id") String jobsId,
     @Field("user_id") String userId,
-    @Field("reviewed") String reviewed,
-    @Field("updated_at") String updatedAt,
-    @Field("created_at") String createdAt,
-    @Field("id") String id,
   );
 
-  @GET("/apply/")
+  @GET("/apply/{userID}")
   Future<ShowApplyResponse> showApply(
     @Header('Authorization') String token,
+      @Path() String userID
   );
 
   // Company
@@ -192,8 +190,8 @@ abstract class AppServiceClient {
   @GET("/chat/")
   Future<AllChatResponse> allChat(
     @Header('Authorization') String token,
-    @Field("user_id") String userId,
-    @Field("comp_id") String compId,
+    @Query("user_id") String userId,
+    @Query("comp_id") String compId,
   );
 
   // notification

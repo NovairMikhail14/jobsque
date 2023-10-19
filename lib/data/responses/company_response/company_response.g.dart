@@ -20,17 +20,13 @@ CompanyResponse _$CompanyResponseFromJson(Map<String, dynamic> json) =>
     CompanyResponse(
       json['id'] as int?,
       json['name'] as String?,
-      json['image'],
+      json['image'] as String?,
       json['email'] as String?,
       json['website'] as String?,
       json['about'] as String?,
       json['location'] as String?,
-      json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
-      json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
+      json['created_at'] as String?,
+      json['updated_at'] as String?,
     );
 
 Map<String, dynamic> _$CompanyResponseToJson(CompanyResponse instance) =>
@@ -42,8 +38,8 @@ Map<String, dynamic> _$CompanyResponseToJson(CompanyResponse instance) =>
       'website': instance.website,
       'about': instance.about,
       'location': instance.location,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
     };
 
 GetAllCompanyResponse _$GetAllCompanyResponseFromJson(

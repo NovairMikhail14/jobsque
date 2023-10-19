@@ -17,7 +17,7 @@ class CompanyResponse {
   @JsonKey(name: "name")
   String? name;
   @JsonKey(name: "image")
-  dynamic? image;
+  String? image;
   @JsonKey(name: "email")
   String? email;
   @JsonKey(name: "website")
@@ -27,9 +27,9 @@ class CompanyResponse {
   @JsonKey(name: "location")
   String? location;
   @JsonKey(name: "created_at")
-  DateTime? createdAt;
+  String? createdAt;
   @JsonKey(name: "updated_at")
-  DateTime? updatedAt;
+  String? updatedAt;
 
   CompanyResponse(
     this.id,

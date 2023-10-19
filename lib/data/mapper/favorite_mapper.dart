@@ -33,13 +33,16 @@ extension JobResponseMapper on FavoriteJobResponse? {
 extension UserResponseMapper on FavoriteUserResponse? {
   User toDomain() {
     return User(
-      this?.like ?? false,
-      this?.imageJob.orEmpty() ?? Constants.empty,
-      this?.userName.orEmpty() ?? Constants.empty,
-      this?.location.orEmpty() ?? Constants.empty,
-      this?.userId.orZero() ?? Constants.zero,
-      this?.jobId.orEmpty() ?? Constants.empty,
-    );
+        this?.id.orZero() ?? Constants.zero,
+        this?.userId.orZero() ?? Constants.zero,
+        this?.like.orZero() ?? Constants.zero,
+        this?.jobId.orZero() ?? Constants.zero,
+        this?.imageJob.orEmpty() ?? Constants.empty,
+        this?.userName.orEmpty() ?? Constants.empty,
+        this?.location.orEmpty() ?? Constants.empty,
+        this?.createdAt.orDefultDate() ?? Constants.defultDate,
+        this?.updatedAt.orDefultDate() ?? Constants.defultDate,
+        this?.job.toDomain());
   }
 }
 
@@ -55,8 +58,8 @@ extension FavoriteResponseMapper on AddFavoriteResponse? {
   }
 }
 
-extension NonNulllist on List<FavoriteJobResponse>? {
-  List<Job> toDomain() {
+extension NonNulllist on List<FavoriteUserResponse>? {
+  List<User> toDomain() {
     if (this == null) {
       return [];
     } else {
@@ -67,7 +70,7 @@ extension NonNulllist on List<FavoriteJobResponse>? {
 
 extension ShowAllFavoriteResponseMapper on ShowAllFavoriteResponse? {
   ShowAllFavorite toDomain() {
-    return ShowAllFavorite(this?.jobListResponse.toDomain()??[]);
+    return ShowAllFavorite(this?.jobListResponse.toDomain() ?? []);
   }
 }
 

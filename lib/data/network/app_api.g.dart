@@ -82,10 +82,14 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ForgetPasswordResponse> forgetPassword(String email) async {
+  Future<ForgetPasswordResponse> forgetPassword(
+    String token,
+    String email,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     final _data = {'email': email};
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<ForgetPasswordResponse>(Options(
@@ -351,7 +355,7 @@ class _AppServiceClient implements AppServiceClient {
     };
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<AddFavoriteResponse>(Options(
-      method: 'PUT',
+      method: 'POST',
       headers: _headers,
       extra: _extra,
     )
@@ -410,7 +414,7 @@ class _AppServiceClient implements AppServiceClient {
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<deleteFavoriteResponse>(Options(
-      method: 'GET',
+      method: 'DELETE',
       headers: _headers,
       extra: _extra,
     )
@@ -580,16 +584,12 @@ class _AppServiceClient implements AppServiceClient {
   Future<ApplyResponse> apply(
     String token,
     String name,
-    String end,
+    String cvFile,
+    String email,
     String mobile,
-    String workType,
     String otherFile,
     String jobsId,
     String userId,
-    String reviewed,
-    String updatedAt,
-    String createdAt,
-    String id,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -597,16 +597,12 @@ class _AppServiceClient implements AppServiceClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = {
       'name': name,
-      'email': end,
-      'mobile': mobile,
-      'work_type': workType,
+      'email': cvFile,
+      'mobile': email,
+      'work_type': mobile,
       'other_file': otherFile,
       'jobs_id': jobsId,
       'user_id': userId,
-      'reviewed': reviewed,
-      'updated_at': updatedAt,
-      'created_at': createdAt,
-      'id': id,
     };
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<ApplyResponse>(Options(
@@ -630,7 +626,10 @@ class _AppServiceClient implements AppServiceClient {
   }
 
   @override
-  Future<ShowApplyResponse> showApply(String token) async {
+  Future<ShowApplyResponse> showApply(
+    String token,
+    String userID,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
@@ -644,7 +643,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              '/apply/',
+              '/apply/${userID}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -766,13 +765,13 @@ class _AppServiceClient implements AppServiceClient {
     String compId,
   ) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'user_id': userId,
+      r'comp_id': compId,
+    };
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
-    final _data = {
-      'user_id': userId,
-      'comp_id': compId,
-    };
+    final Map<String, dynamic>? _data = null;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<AllChatResponse>(Options(
       method: 'GET',

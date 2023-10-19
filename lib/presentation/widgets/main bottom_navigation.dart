@@ -18,7 +18,7 @@ class MainBottomNavigationBar extends StatelessWidget {
         if(value == 0 ){
           Navigator.of(context).pushReplacementNamed(Routes.HomeScreenViewRoute);
         }else if(value == 1) {
-          Navigator.of(context).pushReplacementNamed(Routes.HomeScreenViewRoute);
+          Navigator.of(context).pushReplacementNamed(Routes.MessagesListViewRoute);
         }else if(value == 2){
           Navigator.of(context).pushReplacementNamed(Routes.AppliedJobViewRoute);
         }if(value == 3 ){

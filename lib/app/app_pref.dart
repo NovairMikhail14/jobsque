@@ -31,6 +31,14 @@ class AppPreferences {
   Future<void> setAppLoggedIn() async {
     _sharedPreferences.setBool(PREFS_KEY_IS_LOGGED_IN,true);
   }
+  Future<void> setUserID(String userID) async {
+    _sharedPreferences.setString("UserID",userID);
+  }
+
+  Future<String?> getUserID() async {
+    return _sharedPreferences.getString("UserID");
+  }
+
   Future<void> setAppToken(String token) async {
     _sharedPreferences.setString(PREFS_KEY_TOKEN,token);
   }

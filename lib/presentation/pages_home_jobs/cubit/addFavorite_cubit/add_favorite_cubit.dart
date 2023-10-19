@@ -9,9 +9,10 @@ class AddFavoriteCubit extends Cubit<AddFavoriteState> {
   AddFavoriteCubit(this.addFavoriteUseCase) : super(AddFavoriteInitial());
   final AppPreferences _shearedPref = instance<AppPreferences>();
   AddFavoriteUseCase addFavoriteUseCase;
-  addFavorite(String userId, String jobId) async {
+  addFavorite(String jobId) async {
     final token = await _shearedPref.getAppToken();
-    (await addFavoriteUseCase.execute(AddFavoriteUseCaseInput(token!,userId, jobId)))
+    final userId = await _shearedPref.getUserID();
+    (await addFavoriteUseCase.execute(AddFavoriteUseCaseInput(token!, jobId,userId!)))
         .fold((l) {
       return null;
     }, (r) {

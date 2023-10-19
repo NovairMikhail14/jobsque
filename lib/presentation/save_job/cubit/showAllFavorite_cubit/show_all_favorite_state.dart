@@ -8,7 +8,7 @@ class ShowAllFavoriteInitial extends ShowAllFavoriteState {}
 class ShowAllFavoriteLoading extends ShowAllFavoriteState {}
 
 class ShowAllFavoriteSucess extends ShowAllFavoriteState {
-List<Job> listJob;
+List<User> listJob;
   ShowAllFavoriteSucess(this.listJob,);
 }
 

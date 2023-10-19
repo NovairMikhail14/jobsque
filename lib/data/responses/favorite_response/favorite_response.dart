@@ -75,27 +75,40 @@ class FavoriteJobResponse {
 
 @JsonSerializable()
 class FavoriteUserResponse {
+
+  @JsonKey(name: "id")
+  int id;
+  @JsonKey(name: "user_id")
+  int userId;
   @JsonKey(name: "like")
-  bool like;
-  @JsonKey(name: "image_job")
+  int like;
+  @JsonKey(name: "job_id")
+  int jobId;
+  @JsonKey(name: "image")
   String imageJob;
-  @JsonKey(name: "user_name")
+  @JsonKey(name: "name")
   String userName;
   @JsonKey(name: "location")
   String location;
-  @JsonKey(name: "user_id")
-  int userId;
-  @JsonKey(name: "job_id")
-  String jobId;
+  @JsonKey(name: "created_at")
+  DateTime? createdAt;
+  @JsonKey(name: "updated_at")
+  DateTime? updatedAt;
+  @JsonKey(name: "jobs")
+  FavoriteJobResponse? job;
 
   FavoriteUserResponse(
-    this.like,
-    this.imageJob,
-    this.userName,
-    this.location,
-    this.userId,
-    this.jobId,
-  );
+      this.id,
+      this.userId,
+      this.like,
+      this.jobId,
+      this.imageJob,
+      this.userName,
+      this.location,
+      this.createdAt,
+      this.updatedAt,
+      this.job);
+
   factory FavoriteUserResponse.fromJson(Map<String,dynamic> json) => _$FavoriteUserResponseFromJson(json);
   Map<String,dynamic> toJson() => _$FavoriteUserResponseToJson(this);
 }
@@ -123,7 +136,7 @@ class AddFavoriteResponse extends BaseResponse {
 @JsonSerializable()
 class ShowAllFavoriteResponse extends BaseResponse {
   @JsonKey(name: "data")
-  List<FavoriteJobResponse>? jobListResponse;
+  List<FavoriteUserResponse>? jobListResponse;
   ShowAllFavoriteResponse(this.jobListResponse);
   factory ShowAllFavoriteResponse.fromJson(Map<String,dynamic> json) => _$ShowAllFavoriteResponseFromJson(json);
   Map<String,dynamic> toJson() => _$ShowAllFavoriteResponseToJson(this);

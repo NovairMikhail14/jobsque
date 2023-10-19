@@ -7,11 +7,11 @@ extension ChatResponseMapper on ChatResponse? {
   Chat toDomain() {
     return Chat(
       this?.massage.orEmpty() ?? Constants.empty,
-      this?.userId.orEmpty() ?? Constants.empty,
-      this?.compId.orEmpty() ?? Constants.empty,
+      this?.userId.orZero() ?? Constants.zero,
+      this?.compId.orZero() ?? Constants.zero,
       this?.senderUser.orEmpty() ?? Constants.empty,
-      this?.updatedAt.orDefultDate() ?? Constants.defultDate,
-      this?.createdAt.orDefultDate() ?? Constants.defultDate,
+      this?.updatedAt.orEmpty() ?? Constants.empty,
+      this?.createdAt.orEmpty() ?? Constants.empty,
       this?.id.orZero() ?? Constants.zero,
     );
   }

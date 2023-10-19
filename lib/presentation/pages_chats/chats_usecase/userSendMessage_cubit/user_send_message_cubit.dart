@@ -9,4 +9,16 @@ class UserSendMessageCubit extends Cubit<UserSendMessageState> {
   UserSendMessageCubit(this.userSendMessageUseCase) : super(UserSendMessageInitial());
   final AppPreferences _shearedPref = instance<AppPreferences>();
 UserSendMessageUseCase userSendMessageUseCase;
+  String message="";
+
+sendMessage(String message,String compId) async{
+  String? token = await _shearedPref.getAppToken();
+  final userId = await _shearedPref.getUserID();
+  (await userSendMessageUseCase.execute(UserSendMessageUseCaseInput(token!,compId,message,userId!))).fold((l) {
+    return null;
+  }, (r) {
+    message = r.chat!.massage;
+    return null;
+  });
+}
 }

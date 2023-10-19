@@ -112,7 +112,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
   @override
   Future<ForgetPasswordResponse> forgetPassword(
       ForgetPasswordRequest forgetPasswordRequest) async {
-    return await appServiceClient.forgetPassword(forgetPasswordRequest.email);
+    return await appServiceClient.forgetPassword( "Bearer ${forgetPasswordRequest.token}",forgetPasswordRequest.email);
   }
 
   @override
@@ -175,16 +175,12 @@ class RemoteDataSourceImp implements RemoteDataSource {
     return await appServiceClient.apply(
         "Bearer ${applyRequest.token}",
         applyRequest.name,
-        applyRequest.end,
+        applyRequest.cvFile,
+        applyRequest.email,
         applyRequest.mobile,
-        applyRequest.workType,
         applyRequest.otherFile,
         applyRequest.jobsId,
-        applyRequest.userId,
-        applyRequest.reviewed,
-        applyRequest.updatedAt,
-        applyRequest.createdAt,
-        applyRequest.id);
+        applyRequest.userId,);
   }
 
   @override
@@ -287,7 +283,7 @@ class RemoteDataSourceImp implements RemoteDataSource {
 
   @override
   Future<ShowApplyResponse> showApply(ShowApplyRequest showApplyRequest) async {
-    return await appServiceClient.showApply("Bearer ${showApplyRequest.token}");
+    return await appServiceClient.showApply("Bearer ${showApplyRequest.token}",showApplyRequest.userID);
   }
 
   @override
@@ -331,6 +327,6 @@ class RemoteDataSourceImp implements RemoteDataSource {
 
   @override
   Future<deleteFavoriteResponse> deleteFavorite(DeleteFavoriteRequest deleteFavoriteRequest) async{
-   return await appServiceClient.deleteFavorite(deleteFavoriteRequest.token, deleteFavoriteRequest.id);
+   return await appServiceClient.deleteFavorite( "Bearer ${deleteFavoriteRequest.token}", deleteFavoriteRequest.id);
   }
 }

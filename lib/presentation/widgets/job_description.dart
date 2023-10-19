@@ -61,7 +61,8 @@ class JobDescription extends StatelessWidget {
                         bottom: AppMargin.m10,
                         top: AppMargin.m10));
               })),
-          SizedBox(width: salary != 0 ? AppSize.s80:0,),
+          SizedBox(width: salary  != 0  ? AppSize.s60:0,),
+          SizedBox(width: period  != 0  ? AppSize.s60:0,),
           Text(period != "" ? "Posted $period days ago" : ""),
           Text(
             salary != 0? "\$${(salary/ 1000).toString().split(".")[0] }K" : "",

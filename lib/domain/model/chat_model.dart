@@ -1,10 +1,10 @@
 class Chat {
   String massage;
-  String userId;
-  String compId;
+  int userId;
+  int compId;
   String senderUser;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String createdAt;
+  String updatedAt;
   int id;
   Chat(
     this.massage,

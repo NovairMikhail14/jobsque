@@ -37,8 +37,8 @@ class Authentication {
 }
 
 class ForgetPassword {
-  User? user;
-  ForgetPassword(this.user);
+  String message;
+  ForgetPassword(this.message);
 }
 
 class Register {
