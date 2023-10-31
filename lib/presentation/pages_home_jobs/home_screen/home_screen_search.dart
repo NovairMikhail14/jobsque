@@ -57,7 +57,7 @@ class _HomeScreenSearchState extends State<HomeScreenSearchView> {
                             },
                             icon: Icon(Icons.arrow_back_outlined)),
                         Expanded(
-                          child: SearchBar(
+                          child: MainSearchBar(
                             onEditingComplete: () {
                               Navigator.of(context)
                                   .pushNamed(Routes.HomeScreenFilter);

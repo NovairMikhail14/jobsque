@@ -8,11 +8,11 @@ import '../../resources/strings_manager.dart';
 import '../../resources/style_manager.dart';
 import '../../resources/value_manager.dart';
 
-class SearchBar extends StatelessWidget {
+class MainSearchBar extends StatelessWidget {
   Function()? onTap;
   Function()? onEditingComplete;
   Function(String)? onChanged;
-  SearchBar({ this.onChanged, this.onTap,this.onEditingComplete});
+  MainSearchBar({ this.onChanged, this.onTap,this.onEditingComplete});
 
   @override
   Widget build(BuildContext context) {
